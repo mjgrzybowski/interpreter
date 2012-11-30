@@ -1,32 +1,62 @@
+/* Zmiany KW
+ * literowki
+ * znaki w UTF (ą,ł itp.)
+ * undefined na null   (var currentCommand = null;)
+ * sredniki
+ *
+ *
+ * */
+
+
 commands = {
-    "SS":{numberOfPars:2,fnc:function(m,pars){
-        m[pars[0]]=Number(pars[1]);
-    }},
-    "WZS":{numberOfPars:2},
-    "SZ":{numberOfPars:2,fnc:function(m,pars){
-        m[pars[1]]=Number(m[pars[0]]);
-    }},
-    "ZWJ":{numberOfPars:1,fnc:function(m,pars){
-       m[pars[0]]++;
-    }},
-    "ZMJ":{numberOfPars:1,fnc:function(m,pars){
-        m[pars[0]]--;
-    }},
-    "IDL":{numberOfPars:2,fnc:function(m,pars){
-        if (m[pars[0]]!=0)
-        {
-            lastExecutedLine = pars[1]-1;
-        };
-    }},
-    "END":{numberOfPars:0,fnc:function(m,pars){
-       console.log('koniec');
-       flush();
-    }}
-        };
+    "SS":{
+        numberOfPars:2,
+        fnc:function(m,pars){
+            m[pars[0]]=Number(pars[1]);
+        }
+    },
+    "WZS":{
+        numberOfPars:2
+    },
+    "SZ":{
+        numberOfPars:2,
+        fnc:function(m,pars){
+            m[pars[1]]=Number(m[pars[0]]);
+        }
+    },
+    "ZWJ":{
+        numberOfPars:1,
+        fnc:function(m,pars){
+            m[pars[0]]++;
+        }
+    },
+    "ZMJ":{
+        numberOfPars:1,
+        fnc:function(m,pars){
+            m[pars[0]]--;
+        }
+    },
+    "IDL":{
+        numberOfPars:2,
+        fnc:function(m,pars){
+            if (m[pars[0]]!=0)
+            {
+                lastExecutedLine = pars[1]-1;
+            }
+        }
+    },
+    "END":{
+        numberOfPars:0,
+        fnc:function(m,pars){
+            console.log('koniec');
+            flush();
+        }
+    }
+};
 memory = {};
 
 function ParseLine(line) {
-    var currentCommand = undefined;
+    var currentCommand = null;
 
     if(line=="")
         return "blank";
@@ -34,17 +64,17 @@ function ParseLine(line) {
     var arr = line.split(':');
 
     if (arr[1]==undefined)
-        return "W lini nie ma znaku ':'";
+        return "W linii nie ma znaku ':'";
 
     if (arr[2]!=undefined)
-        return "W lini jest więcej niż jeden znak ':'";
+        return "W linii jest wiecej niz jeden znak ':'";
 
     for (c in commands) {
         if (c==arr[0])
-            {
-                currentCommand = commands[c];
-                currentCommandLabel = c;
-            }
+        {
+            currentCommand = commands[c];
+            currentCommandLabel = c;
+        }
     }
 
     if (currentCommand==undefined)
@@ -63,7 +93,7 @@ function ParseLine(line) {
     }
 
     if(pL != currentCommand.numberOfPars)
-        return "Zła liczba parametrów komendy, "+currentCommandLabel+" przyjmuje "+currentCommand.numberOfPars+"parametrów, otrzymała "+pL ;
+        return "Zla liczba parametrow komendy, "+currentCommandLabel+" przyjmuje "+currentCommand.numberOfPars+"parametrow, otrzymala "+pL ;
 
     if( pL!=0 )
         for (p in pars)
@@ -76,21 +106,24 @@ function ParseLine(line) {
 
         }
 
-    return {command:currentCommand,pars:pars};
+    return {
+        command:currentCommand,
+        pars:pars
+    };
 
 }
 
 function ParseCode() {
     var currentCode = $('#code').val();
-    var lnM1, ln
-    currentCode = currentCode.split('\n')
+    var lnM1, ln;
+    currentCode = currentCode.split('\n');
 
     for (lnM1 in currentCode)
     {
 
         ln = lnM1 + 1;
         parsed = ParseLine(currentCode[lnM1]);
-        console.log(parsed)
+        console.log(parsed);
 
     }
 
@@ -100,7 +133,7 @@ function ParseCode() {
 function CleanCode() {
     var currentCode = $('#code').val();
     var lnM1, ln, newCode;
-    currentCode = currentCode.split('\n')
+    currentCode = currentCode.split('\n');
 
     for (lnM1 in currentCode)
     {
@@ -115,13 +148,15 @@ function CleanCode() {
 }
 
 function placeMarker(nol){
-    $('#execMarker').animate({'top':3+16*(nol-1)},200);
+    $('#execMarker').animate({
+        'top':3+16*(nol-1)
+    },200);
 }
 
 function drawLineNums(n){
     for(var i= 1;i<=n;i++)
     {
-             $('.linesNums').append(i+'<br/>');
+        $('.linesNums').append(i+'<br />');
     }
 }
 
@@ -148,8 +183,8 @@ function makeStep(){
 
 function executeLine(n) {
     var currentCode = $('#code').val();
-    var lnM1, ln
-    currentCode = currentCode.split('\n')
+    var lnM1, ln;
+    currentCode = currentCode.split('\n');
 
 
 
@@ -162,7 +197,7 @@ function executeLine(n) {
     else
     {
         if(todo!="blank")
-            alert('błąd w lini n: ' + todo);
+            alert('blad w linii nr: ' + todo);
     }
 
 }
