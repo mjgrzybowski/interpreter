@@ -34,7 +34,7 @@ html { font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 10
 
 html, button, input, select, textarea { font-family: sans-serif; color: #222; }
 
-body { margin: 0; font-size: 1em; line-height: 1.4; }
+body { margin: 0; font-size: 1em; line-height: 1.4; background-color: #daa520}
 
 /*
  * Remove text-shadow in selection highlight: h5bp.com/i
@@ -236,23 +236,22 @@ textarea#code {
 div#code-ctnr {
     width:260px;
     height:500px;
-
     position:absolute;
-
     left:10px;
-    top:40px;
+    top:280px;
 
 
 }
 
 div#code-ctnr div.lineMarker {
-position:absolute;
-width:250px;
-height:16px;
-top:3px;
-left:0px;
-background-color: #ddddff;
-z-index:10;
+    position:absolute;
+    width:250px;
+    height:16px;
+    line-height: 16px;
+    top:3px;
+    left:0px;
+    background-color: #ddddff;
+    z-index:10;
 
 }
 
@@ -275,7 +274,7 @@ div#memory-ctnr {
     position:absolute;
 
     left:280px;
-    top:40px;
+    top:280px;
     background-color: #ddffdd;
 
 
@@ -283,11 +282,15 @@ div#memory-ctnr {
 
 div.btn {
     width:150px;
-    height:30px;
+    height:25px;
+    margin: 5px;
+    background-color: #ff4500;
     border:2px solid black;
     border-radius:5px;
     cursor:pointer;
     user-select: none;
+    text-align: center;
+    font-weight: bold;
     float:left;
 }
 

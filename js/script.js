@@ -1,11 +1,8 @@
-/* Zmiany KW
- * literowki
- * znaki w UTF (ą,ł itp.)
- * undefined na null   (var currentCommand = null;)
- * sredniki
- *
- *
- * */
+
+var codeInput = new _Code("", "");
+var codeToTranslate;
+var codeTranslated;
+codeInput.setContent($('#code').val());
 
 
 commands = {
@@ -124,6 +121,7 @@ function ParseCode() {
         ln = lnM1 + 1;
         parsed = ParseLine(currentCode[lnM1]);
         console.log(parsed);
+        document.getElementById("memory-ctnr").value=parsed;
 
     }
 
@@ -160,7 +158,7 @@ function drawLineNums(n){
     }
 }
 
-drawLineNums(20);
+drawLineNums(31);
 CleanCode();
 //ParseCode()
 
@@ -178,6 +176,12 @@ function makeStep(){
     console.log(lastExecutedLine);
     placeMarker(lastExecutedLine);
     executeLine(lastExecutedLine);
+
+}
+
+function translate(language){
+
+    lexing(codeInput.getContent());
 
 }
 
@@ -208,5 +212,21 @@ function exec(what,mem){
 
 }
 
+function chooseLanguage(languageName){
+
+    codeToTranslate.setCodeLanguage(languageName);
+
+
+}
+
+function run(){
+
+
+
+}
+
+
 $('#step').click(makeStep);
 $('#flush').click(flush);
+$('#translate').click(translate());
+$('#run').click(run);

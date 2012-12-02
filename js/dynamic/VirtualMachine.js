@@ -1,8 +1,12 @@
 /**
  * Created with JetBrains WebStorm.
- * User: Kamil
- * Date: 27.11.12
- * Time: 20:36
+ * User: kamil
+ * Date: 02.12.12
+ * Time: 07:45
  * To change this template use File | Settings | File Templates.
  */
-function lexing(code){}
+
+function VirtualMachine(compiler,memory){
+
+
+}
