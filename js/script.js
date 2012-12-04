@@ -1,4 +1,3 @@
-
 var codeInput = new _Code("", "");
 var codeToTranslate;
 var codeTranslated;
@@ -56,12 +55,12 @@ function ParseLine(line) {
     var currentCommand = null;
 
     if(line=="")
-        return "blank";
+        return Msg.error1[Msg.langNumber];
 
     var arr = line.split(':');
 
     if (arr[1]==undefined)
-        return "W linii nie ma znaku ':'";
+        return Msg.error2[Msg.langNumber];
 
     if (arr[2]!=undefined)
         return "W linii jest wiecej niz jeden znak ':'";

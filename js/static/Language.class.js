@@ -7,7 +7,10 @@
  */
 var _Language = function(name){
     this.name = name; // nazwa jezyka
-    this.treeForPreprocessor = {}; // obiekt odpowiadajacy za budowanie drzewa dla Lexera
+    this.operator = null; // tablica operatorow
+    this.method = null; // tablica metod
+    this.literal = null; // literaly = cyfry, litery, ciagi znakow
+    this.treeForPreprocessor = {}; // obiekt odpowiadajacy za budowanie drzewa dla Lexera, oparty na RegEx?
 
     this.getName = function() {return this.name;}; // pobieranie nazwy jezyka
     this.getTreeForPreprocessor = function() {return this.treeForPreprocessor;}; // pobieranie drzewa dla Preprocesora

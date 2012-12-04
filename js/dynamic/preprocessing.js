@@ -5,4 +5,7 @@
  * Time: 20:24
  * To change this template use File | Settings | File Templates.
  */
-function preprocessing(lexer){} // funkcja zawierająca algorytm preprocesowania
+function preprocessing(lexer){ // funkcja zawierająca algorytm preprocesowania
+
+
+}

@@ -3331,7 +3331,7 @@ jQuery.event = {
 			fixHook = jQuery.event.fixHooks[ event.type ] || {},
 			copy = fixHook.props ? this.props.concat( fixHook.props ) : this.props;
 
-		event = jQuery.Event( originalEvent );
+		event = jQuery.Event.( originalEvent );
 
 		for ( i = copy.length; i; ) {
 			prop = copy[ --i ];

@@ -6,7 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 
-function _Compiler(){
+//  Takes data from Preprocessor class object, returns exact procedure to VirtualMachine
+function _Compiler() {
 
 
 

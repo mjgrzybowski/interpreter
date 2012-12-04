@@ -5,4 +5,10 @@
  * Time: 20:24
  * To change this template use File | Settings | File Templates.
  */
-function interpretation(){}; // funkcja zawierająca algorytm interpretowania
+
+// funkcja zawierająca algorytm interpretowania
+// Todo: zbudowac funkcje
+function interpretation() {
+
+
+}

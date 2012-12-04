@@ -5,13 +5,11 @@
  * Time: 20:36
  * To change this template use File | Settings | File Templates.
  */
-function lexing(code){
+function lexing( code ) {
 
     this.code = code;
 
-    var tree = this.code.split('\n');
-
-    alert(tree);
+    var tree = this.code.split( '\n' );
 
     var lexingResult;
 

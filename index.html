@@ -7,12 +7,13 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+    <!-- http://www.rw-designer.com/online_icon_maker.php -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
   <!-- Use the .htaccess and remove these lines to avoid edge case issues.
        More info: h5bp.com/i/378 -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title>FETE: Program and learn it</title>
+  <title id="title">FETE: Program and learn it</title>
   <meta name="description" content="Application which anyone can use to learn programming languages.">
 
   <!-- Mobile viewport optimized: h5bp.com/viewport -->
@@ -20,8 +21,45 @@
 
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
 
-  <link rel="stylesheet" href="css/style.css">
+    <script>
 
+        /*
+         Browser Language Redirect script- By JavaScript Kit
+         For this and over 400+ free scripts, visit http://www.javascriptkit.com
+         This notice must stay intact
+         */
+
+        //Enter ISO 639-2 letter Language codes to detect (see: http://www.w3.org/WAI/ER/IG/ert/iso639.htm):
+        var langcodes=new Array("pl", "en", "de", "es", "fr", "default")
+
+        //Enter corresponding redirect URLs (last one is for default URL):
+        var langredirects=new Array("application.html", "application.html", "application.html", "application.html", "application.html", "application.html")
+
+        var languageinfo=navigator.language? navigator.language : navigator.userLanguage;
+        var gotodefault=1;
+
+        function redirectpage(dest){
+            if (window.location.replace)
+                window.location.replace(dest)
+            else
+                window.location=dest
+        }
+
+        for (i=0;i<langcodes.length-1;i++){
+            if (languageinfo.substr(0,2)==langcodes[i]){
+                redirectpage(langredirects[i])
+                gotodefault=0
+                break
+            }
+        }
+
+        if (gotodefault)
+            redirectpage(langredirects[langcodes.length-1])
+
+    </script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <meta http-equiv="Refresh" content="5; url=application.html">
 
   <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
 
@@ -30,66 +68,18 @@
        Create your own custom Modernizr build: www.modernizr.com/download/ -->
   <script src="js/libs/modernizr-2.5.3.min.js"></script>
 
-    <!-- Code in textarea loaded from js file -->
-  <script src="js/static/onLoadCode.js"></script>
-    <!-- JavaScript area -->
-    <!-- static -->
-  <script src="js/static/Code.class.js"></script>
-  <script src="js/static/Commands.class.js"></script>
-  <script src="js/static/Language.class.js"></script>
-  <script src="js/static/Operator.class.js"></script>
-  <script src="js/static/TreeDefinition.class.js"></script>
-    <!-- dynamic -->
-  <script src="js/dynamic/Compiler.class.js"></script>
-  <script src="js/dynamic/Interpreter.class.js"></script>
-  <script src="js/dynamic/Lexer.class.js"></script>
-  <script src="js/dynamic/Memory.class.js"></script>
-  <script src="js/dynamic/Method.class.js"></script>
-  <script src="js/dynamic/Preprocessor.class.js"></script>
-  <script src="js/dynamic/VirtualMachine.js"></script>
-  <script src="js/dynamic/interpretation.js"></script>
-  <script src="js/dynamic/lexing.js"></script>
-  <script src="js/dynamic/preprocessing.js"></script>
-    <!-- end of JavaScript area -->
 
 </head>
-<body onload="loadCode()">
+<body>
   <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
        chromium.org/developers/how-tos/chrome-frame-getting-started -->
   <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
   <header>
-    <img src="img/logo_FETE.png" style="padding: 10px" alt="Application logo" />
+    <img src="img/logo_FETE_en.png" alt="Application logo" />
   </header>
-  <div role="main">
+  <h2>&nbsp;&nbsp;&nbsp;Aplikacja FETE!</h2>
+  <h3>&nbsp;&nbsp;&nbsp;Zaczynamy za 5 sekund</h3>
 
-  </div>
-  <footer>
-
-  </footer>
-  <div id="code-ctnr">
-  <textarea id="code"></textarea>
-    <div class="lineMarker" id="execMarker"></div>
-
-    <div class="linesNums"></div>
-  </div>
-
-  <div id="memory-ctnr">
-
-
-
-  </div>
-  <div class="btn" id="step">Zrób krok</div>
-  <div class="btn" id="flush">Zacznij od nowa</div>
-  <div class="btn" id="translate">Przetłumacz</div>
-  <div class="btn" id="run">Uruchom</div>
-  <div style="padding: 8px;">
-      <select name="language" onchange="chooseLanguage(this.options[selectedIndex].text);">
-          <option value="js" selected>javascript</option>
-          <option value="c++">c++</option>
-          <option value="java">java</option>
-      </select>
-  </div>
-  <!--<div class="checklist"></div>-->
 
   <script src="js/libs/jquery-1.7.1.min.js"></script>
 

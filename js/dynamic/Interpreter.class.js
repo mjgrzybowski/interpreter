@@ -5,7 +5,8 @@
  * Time: 20:31
  * To change this template use File | Settings | File Templates.
  */
-function Interpreter(preprocessor){
+//TODO: implementacja interpretowania
+function Interpreter( preprocessor ) {
 
 
 

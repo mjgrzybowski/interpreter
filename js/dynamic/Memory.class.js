@@ -5,6 +5,6 @@
  * Time: 08:01
  * To change this template use File | Settings | File Templates.
  */
-var _Memory = function(){ // klasa pamieci
+var _Memory = function() { // klasa pamieci dla VirtualMachine
 
 };

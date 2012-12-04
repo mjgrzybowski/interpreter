@@ -5,7 +5,10 @@
  * Time: 15:21
  * To change this template use File | Settings | File Templates.
  */
-var _Code = function(language, content){ // klasa kodu
+
+// obiekt tej klasy zwiera kod wpisany przez użytkownika na stronie aplikacji
+// kod okresla jego jezyk
+var _Code = function(content, language){ // klasa kodu
     this.codeLanguage= language; // jezyk kodu
     this.content = content.toString(); // tresc kodu jako string
 
