@@ -10,39 +10,43 @@ var navigatorLanguage = window.navigator.userLanguage || window.navigator.langua
 //works IE/SAFARI/CHROME/FF
 
 function Msg() {
-    this.langNumber = 0 ; // default for Polish
+    this.langNr = 0 ; // default for Polish
     if ( navigatorLanguage === "en" )  //for English
-        langNumber = 1 ;
-    else if ( navigatorLanguage === "en-US" )  //fur English US
-        langNumber = 1 ;
-    else if ( navigatorLanguage === "de" )  //fur Deutch
-        langNumber = 2 ;
+        this.langNr = 1 ;
+    else if ( navigatorLanguage === "en-US" )  //for English US
+        this.langNr = 1 ;
+    else if ( navigatorLanguage === "de" )  //for German
+        this.langNr = 2 ;
     else if ( navigatorLanguage === "es" )  //for Spanish
-        langNumber = 3 ;
+        this.langNr = 3 ;
     else if ( navigatorLanguage === "fr" )  //for French
-        langNumber = 4 ;
+        this.langNr = 4 ;
+    else if ( navigatorLanguage === "ru" )  //for Russian
+        this.langNr = 5 ;
     else if ( navigatorLanguage === "pl" )  //for Polish
-        langNumber = 0 ;
-alert(navigatorLanguage);
-    alert(langNumber);
+        this.langNr = 0 ;
 
-    this.applicationName = [ 'FETE: od podstaw do eksperta', 'FETE: from elementary to expert', 'FETE: from elementary to expert','FETE: from elementary to expert','FETE: from elementary to expert' ];
-    this.error1 = [ 'Pusto', 'Blank','Blank','Blank','Blank'];
-    this.error2 = [ "W linii nie ma znaku ':'", "There is no ':' in line", "There is no ':' in line", "There is no ':' in line", "There is no ':' in line" ];
-    this.zrobKrok = [ 'Zrób krok', 'Make step', 'Make step', 'Make step', 'Make step' ];
-    this.odNowa = [ 'Zacznij od nowa', 'Clear & again', 'Clear & again', 'Clear & again', 'Clear & again' ];
-    this.przetlumacz = [ 'Przetłumacz', 'Translate', 'Translate', 'Translate', 'Translate' ];
-    this.uruchom = [ 'Uruchom', 'Run', 'Start', 'Run', 'Run' ];
+    this.appName = [ 'FETE: od podstaw do eksperta', 'FETE: from elementary to expert', 'FETE: from elementary to expert','FETE: from elementary to expert','FETE: from elementary to expert','FETE: from elementary to expert' ];
+    this.error1 = [ 'Pusto', 'Blank','Blank','Blank','Blank','Blank' ];
+    this.error2 = [ "W linii nie ma znaku ':'", "There is no ':' in line", "There is no ':' in line", "There is no ':' in line", "There is no ':' in line", "There is no ':' in line" ];
+    this.zrobKrok = [ 'Zrób krok', 'Make one step', 'Mache eine Schritt', 'Faire un étape', 'Haga paso', 'Шаг' ];
+    this.odNowa = [ 'Zacznij od nowa', 'Clear & again', 'Clear & again', 'Clear & again', 'Clear & again', 'Clear & again' ];
+    this.przetlumacz = [ 'Przetłumacz kod', 'Translate code', 'Translate code', 'Translate code', 'Translate code', 'Translate code' ];
+    this.uruchom = [ 'Uruchom', 'Run', 'Start', 'Start', 'Start', 'Start' ];
+}
+
+function LoadLocale(nr){
+    var msg = new Msg();
+    // title
+    document.getElementById("title").innerHTML=msg.appName[nr];
+    // buttons
+    document.getElementById("step").innerHTML=msg.zrobKrok[nr];
+    document.getElementById("flush").innerHTML=msg.odNowa[nr];
+    document.getElementById("translate").innerHTML=msg.przetlumacz[nr];
+    document.getElementById("run").innerHTML=msg.uruchom[nr];
 }
 
 function onLoadLocale(){
     var msg = new Msg();
-    alert(msg.applicationName[msg.langNumber]);
-    // title
-    document.getElementById("title").innerHTML=msg.applicationName[msg.langNumber];
-    // buttons
-    document.getElementById("step").innerHTML=msg.zrobKrok[msg.langNumber];
-    document.getElementById("flush").innerHTML=msg.odNowa[msg.langNumber];
-    document.getElementById("translate").innerHTML=msg.przetlumacz[msg.langNumber];
-    document.getElementById("run").innerHTML=msg.uruchom[msg.langNumber];
+    LoadLocale(msg.langNr);
 }

@@ -6,8 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 
-// obiekt tej klasy zwiera kod wpisany przez użytkownika na stronie aplikacji
-// kod okresla jego jezyk
+// obiekt tej klasy zwiera treść (kod) wpisany przez użytkownika na stronie aplikacji
+// kod jest okreslany przez jego jezyk
 var _Code = function(content, language){ // klasa kodu
     this.codeLanguage= language; // jezyk kodu
     this.content = content.toString(); // tresc kodu jako string
@@ -16,5 +16,4 @@ var _Code = function(content, language){ // klasa kodu
     this.setCodeLanguage = function(change){this.codeLanguage = change;}; // zmiana jezyka kodu
     this.getContent = function(){return this.content;}; // pobieranie kodu
     this.setContent = function(change){this.content = change.toString();}; // zmiana kodu
-
 };

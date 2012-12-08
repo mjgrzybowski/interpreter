@@ -55,12 +55,12 @@ function ParseLine(line) {
     var currentCommand = null;
 
     if(line=="")
-        return Msg.error1[Msg.langNumber];
+        return Msg.error1[Msg.langNr];
 
     var arr = line.split(':');
 
     if (arr[1]==undefined)
-        return Msg.error2[Msg.langNumber];
+        return Msg.error2[Msg.langNr];
 
     if (arr[2]!=undefined)
         return "W linii jest wiecej niz jeden znak ':'";
