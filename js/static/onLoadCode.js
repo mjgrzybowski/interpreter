@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-// code used as first on site
+// code used as template on site
 
 code1 = "SS: a,3\n\
 SS: b,4\n\
@@ -26,16 +26,16 @@ ZMJ: m\n\
 \n\
 IDL:m,7\n\
 \n\
-END:"
+END:";
 
-code2="SS: a,3\n\
+code2 = "SS: a,3\n\
 SS: b,4\n\
 ZWJ: a\n\
 ZMJ: b\n\
-END:"
+END:";
 
 
 function loadCode(){
-    document.getElementById("code").value=code2;
+    document.getElementById( "code" ).value = code2;
 }
 

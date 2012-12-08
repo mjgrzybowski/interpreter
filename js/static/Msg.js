@@ -26,8 +26,8 @@ function Msg() {
     else if ( navigatorLanguage === "pl" )  //for Polish
         this.langNr = 0 ;
 
-    this.appName = [ 'FETE: od podstaw do eksperta', 'FETE: from elementary to expert', 'FETE: from elementary to expert','FETE: from elementary to expert','FETE: from elementary to expert','FETE: from elementary to expert' ];
-    this.error1 = [ 'Pusto', 'Blank','Blank','Blank','Blank','Blank' ];
+    this.appName = [ 'FETE: od podstaw do eksperta', 'FETE: from elementary to expert', 'FETE: from elementary to expert', 'FETE: from elementary to expert', 'FETE: from elementary to expert', 'FETE: from elementary to expert' ];
+    this.error1 = [ 'Pusto', 'Blank', 'Blank', 'Blank', 'Blank', 'Blank' ];
     this.error2 = [ "W linii nie ma znaku ':'", "There is no ':' in line", "There is no ':' in line", "There is no ':' in line", "There is no ':' in line", "There is no ':' in line" ];
     this.zrobKrok = [ 'Zrób krok', 'Make one step', 'Mache eine Schritt', 'Faire un étape', 'Haga paso', 'Шаг' ];
     this.odNowa = [ 'Zacznij od nowa', 'Clear & again', 'Clear & again', 'Clear & again', 'Clear & again', 'Clear & again' ];
@@ -35,18 +35,18 @@ function Msg() {
     this.uruchom = [ 'Uruchom', 'Run', 'Start', 'Start', 'Start', 'Start' ];
 }
 
-function LoadLocale(nr){
+function LoadLocale( nr ){
     var msg = new Msg();
     // title
-    document.getElementById("title").innerHTML=msg.appName[nr];
+    document.getElementById("title").innerHTML=msg.appName[ nr ];
     // buttons
-    document.getElementById("step").innerHTML=msg.zrobKrok[nr];
-    document.getElementById("flush").innerHTML=msg.odNowa[nr];
-    document.getElementById("translate").innerHTML=msg.przetlumacz[nr];
-    document.getElementById("run").innerHTML=msg.uruchom[nr];
+    document.getElementById("step").innerHTML=msg.zrobKrok[ nr ];
+    document.getElementById("flush").innerHTML=msg.odNowa[ nr ];
+    document.getElementById("translate").innerHTML=msg.przetlumacz[ nr ];
+    document.getElementById("run").innerHTML=msg.uruchom[ nr ];
 }
 
-function onLoadLocale(){
+function onLoadLocale() {
     var msg = new Msg();
-    LoadLocale(msg.langNr);
+    LoadLocale( msg.langNr );
 }

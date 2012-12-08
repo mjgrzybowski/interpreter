@@ -8,7 +8,7 @@
 var _Commands = function() {
     this.listOfCommands = null; // lista komend jezyka (object of Language)
 
-    this.getListOfCommands = function(){return this.listOfCommands}; // pobieranie listy komend
-    this.setListOfCommands = function(change){this.listOfCommands = change};
+    this.getListOfCommands = function() { return this.listOfCommands }; // pobieranie listy komend
+    this.setListOfCommands = function(change) { this.listOfCommands = change };
 };
 

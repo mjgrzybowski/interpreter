@@ -12,13 +12,15 @@
 // 3... argument/'s
 // next line...
 
+// klasa tworzaca obiekty Lekser, ktore "rozbieraja kod na czesci"
 //TODO: implementacja lexowania
+
 var _Lexer = function( language, tree ) {
     this.lexerLanguage = language; // jezyk dla Lexera
     this.lexerTree = {}; // drzewo, na podstawie ktorego Lexer zadziala, zaleznie od jezyka
 
     this.setLexerTreeAndLanguage = function( tree, language ) // zmiana drzewa i jezyka
-        { this.lexerTree = tree; this.lexerLanguage = language };
+        { this.lexerTree = tree; this.lexerLanguage = language; };
     this.getLexerTree = function() { return this.lexerTree; };
     this.getLexerLanguage = function() { return this.lexerLanguage; };
 };

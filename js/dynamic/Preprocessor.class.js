@@ -5,6 +5,8 @@
  * Time: 15:22
  * To change this template use File | Settings | File Templates.
  */
+
+// obiekt, ktory pobiera informacje z lexera i przekazuje do interpretera
 var _Preprocessor = function( lexer ) {
     try{
         if ( lexer.getLexerTree() )
@@ -23,7 +25,7 @@ var _Preprocessor = function( lexer ) {
         alert( err );
     }
     this.getTreeForPreprocessor = function() {return this.treeForPreprocessor; };
-    this.setTreeForPreprocessor = function( pTree ) { this.treeForPreprocessor = pTree; }
+    this.setTreeForPreprocessor = function( pTree ) { this.treeForPreprocessor = pTree; };
     this.getPreprocessorLanguage = function() { return this.preprocessorLanguage; };
     this.setPreprocessorLanguage = function( pLanguage ) { this.treeForPreprocessor = pLanguage; };
 };

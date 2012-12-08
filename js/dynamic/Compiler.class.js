@@ -7,6 +7,8 @@
  */
 
 //  Takes data from Preprocessor class object, returns exact procedure to VirtualMachine
+// Todo: zbudowac kompilator kodu
+
 function _Compiler() {
 
 

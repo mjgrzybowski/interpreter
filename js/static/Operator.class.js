@@ -6,6 +6,8 @@
  * To change this template use File | Settings | File Templates.
  */
 
+// obiekt operator oznacza operator matematyczny np. + , - , : , / , %  itp.
+
 function _Operator(){
 
     this.operator = "";

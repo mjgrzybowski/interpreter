@@ -8,6 +8,7 @@
 
 // funkcja zawierająca algorytm interpretowania
 // Todo: zbudowac funkcje
+
 function interpretation() {
 
 

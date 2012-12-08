@@ -6,6 +6,9 @@
  * To change this template use File | Settings | File Templates.
  */
 
+// Maszyna wirtualna
+// TODO: zrobić VirtualMachine
+
 function VirtualMachine(compiler,memory){
 
 
