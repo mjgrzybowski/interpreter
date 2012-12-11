@@ -1,0 +1,10 @@
+
+Algorytm = mozliwosci aplikacji
+
+1. Uruchamiam aplikacje
+2. Wpisuje kod do lewego obszaru pamietajac o kolejnosci: FUNKCJA: argument1[, argument2][,argument3]
+3. Uzywajac przycisku Zrob krok poruszam sie po kazdej linijce w dol az do konca kodu (END:)
+4. Po sprawdzeniu kodu moge rozpoczac od nowa (Zacznij od nowa), moge przetlumaczyc kod na inny jezyk, albo go uruchomic
+5. Zacznij od nowa czysci pamiec i przenosi pasek na 1 pozycje
+6. Przetlumacz uruchamia Lexer i pozostale dynamiczne obiekty dajac w efekcie kod w innym jezyku (moge wybrac jakim)
+7. Uruchom automatycznie wlacza Przetlumacz, a nastepnie uruchamia kod z prawego obszaru

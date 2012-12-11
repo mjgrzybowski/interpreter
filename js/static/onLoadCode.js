@@ -36,6 +36,6 @@ END:";
 
 
 function loadCode(){
-    document.getElementById( "code" ).value = code2;
+    document.getElementById( "codeArea" ).value = code2;
 }
 

@@ -11,8 +11,12 @@
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
     <!-- Use the .htaccess and remove these lines to avoid edge case issues.
          More info: h5bp.com/i/378 -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <[if IE]-->
+    <!--[if Chrome]>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <[if Chrome]-->
     <title id="title">FETE: Program and learn it</title>
     <meta name="description" content="Application which anyone can use to learn programming languages.">
 
@@ -34,13 +38,16 @@
 
     <!-- JavaScript area -->
     <!-- static -->
+        <!--must be first-->
+        <script src="js/static/Msg.js"></script>
+
         <script src="js/static/Code.class.js"></script>
         <script src="js/static/Commands.class.js"></script>
         <script src="js/static/Language.class.js"></script>
-        <script src="js/static/Msg.js"></script>
         <script src="js/static/Operator.class.js"></script>
         <script src="js/static/TreeDefinition.class.js"></script>
     <!-- dynamic -->
+        <script src="js/dynamic/AreaValidator.class.js"></script>
         <script src="js/dynamic/Compiler.class.js"></script>
         <script src="js/dynamic/Interpreter.class.js"></script>
         <script src="js/dynamic/Lexer.class.js"></script>
@@ -52,6 +59,7 @@
         <script src="js/dynamic/interpretation.js"></script>
         <script src="js/dynamic/lexing.js"></script>
         <script src="js/dynamic/preprocessing.js"></script>
+        <script src="js/dynamic/UI.js"></script>
 
         <!-- Code in textarea loaded from js file -->
         <script src="js/static/onLoadCode.js"></script>
@@ -66,12 +74,12 @@
     <table>
         <tr><td>
             <img src="img/logo_FETE_en.png" style="padding: 10px;" alt="Application logo" /></td>
-        <td><a href="#" onclick="LoadLocale(0);"><img src="img/pol_flag.gif" style="padding: 10px;" alt="Polish flag" /></a><br />
-            <a href="#" onclick="LoadLocale(1);"><img src="img/eng_flag.gif" style="padding: 10px;" alt="English flag" /></a><br />
-            <a href="#" onclick="LoadLocale(2);"><img src="img/ger_flag.gif" style="padding: 10px;" alt="German flag" /></a><br />
-            <a href="#" onclick="LoadLocale(3);"><img src="img/esp_flag.gif" style="padding: 10px;" alt="Spanish flag" /></a><br />
-            <a href="#" onclick="LoadLocale(4);"><img src="img/fr_flag.gif" style="padding: 10px;" alt="French flag" /></a><br />
-            <a href="#" onclick="LoadLocale(5);"><img src="img/rus_flag.gif" style="padding: 10px;" alt="Russian flag" /></a><br />
+        <td><a href="#" onclick="LoadLocale( 0 );"><img src="img/pol_flag.gif" style="padding: 10px;" alt="Polish flag" /></a><br />
+            <a href="#" onclick="LoadLocale( 1 );"><img src="img/eng_flag.gif" style="padding: 10px;" alt="English flag" /></a><br />
+            <a href="#" onclick="LoadLocale( 2 );"><img src="img/ger_flag.gif" style="padding: 10px;" alt="German flag" /></a><br />
+            <a href="#" onclick="LoadLocale( 3 );"><img src="img/esp_flag.gif" style="padding: 10px;" alt="Spanish flag" /></a><br />
+            <a href="#" onclick="LoadLocale( 4 );"><img src="img/fr_flag.gif" style="padding: 10px;" alt="French flag" /></a><br />
+            <a href="#" onclick="LoadLocale( 5 );"><img src="img/rus_flag.gif" style="padding: 10px;" alt="Russian flag" /></a><br />
         </td></tr></table>
 </header>
 <div role="main">
@@ -80,14 +88,14 @@
 <footer>
 
 </footer>
-<div id="code-ctnr">
-    <textarea id="code"></textarea>
-    <div class="lineMarker" id="execMarker"></div>
-
-    <div class="linesNums"></div>
+<div id="code-container">
+        <label id="labelForCode" for="codeArea">Code</label>
+        <textarea id="codeArea" onchange="CodeAreaValidator.areaValidate('codeArea')"></textarea>
+        <div class="lineMarker" id="execMarker"></div>
+    <div id="lineNumbers" class="linesNumbers">1</div>
 </div>
 
-<div id="memory-ctnr">
+<div id="memory-container">
 
 
 
@@ -96,10 +104,21 @@
 <div class="btn" id="flush">Zacznij od nowa</div>
 <div class="btn" id="translate">Przetłumacz</div>
 <div class="btn" id="run">Uruchom</div>
-<div style="padding: 8px;">
-    <select name="language" onchange="chooseLanguage(this.options[selectedIndex].text);">
+<div id="codeAreaLanguageChoice">
+    <label id="labelForCodeAreaLanguageChoice" for="chooseCodeAreaLanguage">Code Area Language Choice</label>
+    <select id="chooseCodeAreaLanguage" name="language" onchange="chooseCodeLanguage(this.options[selectedIndex].text);">
+        <option value="pr" selected>primitive</option>
+        <option value="js">javascript</option>
+        <option value="cpp">cpp</option>
+        <option value="java">java</option>
+    </select>
+</div>
+<div id="executionAreaLanguageChoice">
+    <label id="labelForExecutionAreaLanguageChoice" for="chooseExecutionAreaLanguage">Execution Area Language Choice</label>
+    <select id="chooseExecutionAreaLanguage" name="language" onchange="chooseExecutionLanguage(this.options[selectedIndex].text);">
+        <option value="pr">primitive</option>
         <option value="js" selected>javascript</option>
-        <option value="c++">c++</option>
+        <option value="cpp">cpp</option>
         <option value="java">java</option>
     </select>
 </div>
@@ -108,7 +127,7 @@
 <script src="js/libs/jquery-1.7.1.min.js"></script>
 
 <script src="js/plugins.js"></script>
-<script src="js/script.js"></script>
+<script src="js/dynamic/UI.js"></script>
 
 </body>
 </html>

@@ -29,6 +29,7 @@ function Msg() {
     this.appName = [ 'FETE: od podstaw do eksperta', 'FETE: from elementary to expert', 'FETE: from elementary to expert', 'FETE: from elementary to expert', 'FETE: from elementary to expert', 'FETE: from elementary to expert' ];
     this.error1 = [ 'Pusto', 'Blank', 'Blank', 'Blank', 'Blank', 'Blank' ];
     this.error2 = [ "W linii nie ma znaku ':'", "There is no ':' in line", "There is no ':' in line", "There is no ':' in line", "There is no ':' in line", "There is no ':' in line" ];
+    this.error3 = [ "W linii jest wiecej niz jeden znak ':'", "There is more than one ':' character", "There is more than one ':' character", "There is more than one ':' character", "There is more than one ':' character", "There is more than one ':' character" ];
     this.zrobKrok = [ 'Zrób krok', 'Make one step', 'Mache eine Schritt', 'Faire un étape', 'Haga paso', 'Шаг' ];
     this.odNowa = [ 'Zacznij od nowa', 'Clear & again', 'Clear & again', 'Clear & again', 'Clear & again', 'Clear & again' ];
     this.przetlumacz = [ 'Przetłumacz kod', 'Translate code', 'Translate code', 'Translate code', 'Translate code', 'Translate code' ];
@@ -38,12 +39,12 @@ function Msg() {
 function LoadLocale( nr ){
     var msg = new Msg();
     // title
-    document.getElementById("title").innerHTML=msg.appName[ nr ];
+    document.getElementById("title").innerHTML = msg.appName[ nr ];
     // buttons
-    document.getElementById("step").innerHTML=msg.zrobKrok[ nr ];
-    document.getElementById("flush").innerHTML=msg.odNowa[ nr ];
-    document.getElementById("translate").innerHTML=msg.przetlumacz[ nr ];
-    document.getElementById("run").innerHTML=msg.uruchom[ nr ];
+    document.getElementById("step").innerHTML = msg.zrobKrok[ nr ];
+    document.getElementById("flush").innerHTML = msg.odNowa[ nr ];
+    document.getElementById("translate").innerHTML = msg.przetlumacz[ nr ];
+    document.getElementById("run").innerHTML = msg.uruchom[ nr ];
 }
 
 function onLoadLocale() {

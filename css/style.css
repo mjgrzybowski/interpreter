@@ -223,27 +223,32 @@ td { vertical-align: top; }
 
 
 
-textarea#code {
-    width:230px;
+textarea#codeArea {
+    width:220px;
     height:500px;
     font-family: monospace;
     z-index:20;
     position:absolute;
     background: none;
-    left:20px
+    left:30px
 }
 
-div#code-ctnr {
+#labelForCodeAreaLanguageChoice, #labelForExecutionAreaLanguageChoice{
+    display: none;
+}
+
+
+div#code-container {
     width:260px;
     height:500px;
     position:absolute;
     left:10px;
-    top:280px;
+    top:310px;
 
 
 }
 
-div#code-ctnr div.lineMarker {
+div#code-container div.lineMarker {
     position:absolute;
     width:250px;
     height:16px;
@@ -255,7 +260,7 @@ div#code-ctnr div.lineMarker {
 
 }
 
-div#code-ctnr div.linesNums {
+div#code-container div.linesNumbers {
     position: absolute;
     width: 16px;
     height: 500px;
@@ -267,14 +272,14 @@ div#code-ctnr div.linesNums {
 
 }
 
-div#memory-ctnr {
+div#memory-container {
     width:260px;
     height:500px;
 
     position:absolute;
 
     left:280px;
-    top:280px;
+    top:310px;
     background-color: #ddffdd;
 
 
@@ -294,9 +299,21 @@ div.btn {
     float:left;
 }
 
+div#codeAreaLanguageChoice {
+    position:absolute;
 
+    left:10px;
+    top:280px;
 
+}
 
+div#executionAreaLanguageChoice {
+    position:absolute;
+
+    left:280px;
+    top:280px;
+
+}
 
 
 
