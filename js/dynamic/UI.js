@@ -8,34 +8,35 @@
 
 var _UI = function(){
 
-    this.memory = [];
-    this.lastExecutedLine = 0;
-    this.codeLanguage = "primitive";
-    this.executionLanguage = "javascript";
-    this.lineNumbers = { 0: 31, 1: "1" };
+    var memory = [];
+    var lastExecutedLine = 0;
+    var codeLanguage = "primitive";
+    var executionLanguage = "javascript";
+    var lineNumbers = { 0: 1, 1: "1" };
 
-    this.getCodeLanguage = function() { return this.codeLanguage; };
-    this.setCodeLanguage = function( c ){ this.codeLanguage = c; };
-    this.getExecutionLanguage = function() { return this.executionLanguage; };
-    this.setExecutionLanguage = function( e ){ this.executionLanguage = e; };
+    this.getCodeLanguage = function() { return codeLanguage; };
+    //this.setCodeLanguage = function( c ){ codeLanguage = c; };
+    //this.getExecutionLanguage = function() { return executionLanguage; };
+    //this.setExecutionLanguage = function( e ){ executionLanguage = e; };
+    this.getLineNumbers = function() { return lineNumbers; };
 
 
     this.drawLineNumbers = function(){
         var lineNumbersBuilder = "";
-        for( var i = 1; i <= this.lineNumbers[ 0 ]; i++)
+        for( var i = 1; i <= lineNumbers[ 0 ]; i++)
         {
             lineNumbersBuilder += i + '<br />\n' ;
             //$( '.linesNumbers' ).append( i + '<br />' );
         }
 
-        this.lineNumbers[ 1 ] = lineNumbersBuilder;
-        document.getElementById( "lineNumbers" ).innerHTML = UI.lineNumbers[ 1 ];
+        lineNumbers[ 1 ] = lineNumbersBuilder;
+        document.getElementById( "lineNumbers" ).innerHTML = lineNumbers[ 1 ];
 
 
     };
 
     this.extendLineNumbers = function( n ){
-        this.lineNumbers[ 0 ] += n;
+        lineNumbers[ 0 ] += n;
         this.drawLineNumbers();
     };
 
@@ -46,15 +47,15 @@ var _UI = function(){
     };
     // TODO code execution with memory association
     this.makeStep = function() {
-        UI.lastExecutedLine++;
-        console.log( UI.lastExecutedLine + " line done.");
-        UI.placeMarker( UI.lastExecutedLine );
-        //this.executeLine( this.lastExecutedLine );
+        lastExecutedLine++;
+        console.log( lastExecutedLine + " line done.");
+        UI.placeMarker( lastExecutedLine );
+        //executeLine( lastExecutedLine );
     };
 
     /*
 
-    this.executeLine = function( n ) {
+    executeLine = function( n ) {
         var currentCode = $( '#codeArea' ).val();
         //var lnM1, ln;
         currentCode = currentCode.split( '\n' );
@@ -62,8 +63,8 @@ var _UI = function(){
         var willDo = ParseLine( currentCode[ n-1 ] );
         if( typeof( willDo ) != "string" )
         {
-            exec( willDo, this.memory );
-            console.log( this.memory );
+            exec( willDo, memory );
+            console.log( memory );
         }
         else
         {
@@ -73,7 +74,7 @@ var _UI = function(){
 
     };
 
-    this.exec = function( what, mem ){
+    exec = function( what, mem ){
 
         what.command.fnc( mem, what.pars );
 
@@ -81,83 +82,79 @@ var _UI = function(){
     */
 
     this.flush = function() {
-        this.memory = [];
-        this.lastExecutedLine = 0;
+        memory = [];
+        lastExecutedLine = 0;
         console.log( 'flushed!' );
     };
 
     this.translate = function( language ) {
-        //this.language = language;
         //lexing( codeInput.getContent() );
-
+        return language;
     };
 
     this.cleanCode = function() {
-        var currentCodeStart = $( '#codeArea' ).val();
-        var currentCode = currentCodeStart;
-
+        var currentCode = $( '#codeArea' ).val();
         var lnM1, ln;
         //var newCode;
         currentCode = currentCode.split( '\n' );
-
-        for (lnM1 in currentCode )
+        var k;
+        for ( lnM1 in currentCode )
         {
             ln = lnM1 + 1;
-            var k = 0;
+            k = lnM1;
             currentCode[ k ] = currentCode[ k ].trim();
-            k++;
         }
-        currentCodeStart = currentCode.join( '\n' );
+        document.getElementById( 'codeArea' ).value = currentCode.join( '\n' );
     };
 
     this.chooseCodeLanguage = function( languageName ) {
         CodeAreaValidator.setLanguage(languageName);
-        this.codeLanguage = languageName;
+        codeLanguage = languageName;
     };
 
     this.chooseExecutionLanguage = function( languageName ) {
-        this.executionLanguage = languageName;
+        executionLanguage = languageName;
     };
 
     this.run = function(){
 
     };
 
-    this.start = function(){
+    this.getTimeNow = function(){
+        var timeNow = [];
+        if ( new Date().getHours() < 10 )
+            timeNow[0] = "0" + new Date().getHours();
+        else
+            timeNow[0] = new Date().getHours();
+        if ( new Date().getMinutes() < 10 )
+            timeNow[1] = "0" + new Date().getMinutes();
+        else
+            timeNow[1] = new Date().getMinutes();
+        if ( new Date().getSeconds() < 10 )
+            timeNow[2] = "0" + new Date().getSeconds();
+        else
+            timeNow[2] = new Date().getSeconds();
+
+        return timeNow[ 0 ] + ":" + timeNow[ 1 ] + ":" + timeNow[ 2 ];
+    };
+
+    this.loadCode = function() {
+        //var sampleCode1 = "SS: a,3\nSS: b,4\nSS: n,0\nSS: m,0\nSS: wynik,0\nSZ: b,m\n\nSZ: a,n\n\nZWJ: wynik\nZMJ: n\n\nIDL: n,9\n\nZMJ: m\n\nIDL:m,7\n\nEND:";
+        var sampleCode2 = "WW: witaj swiecie\nSS: a,3\nSS: b,4\nZWJ: a\nZMJ: b\nEND:";
+        document.getElementById( "codeArea" ).value = sampleCode2;
+    };
+
+    this.start = function() {
         this.drawLineNumbers();
-        this.cleanCode();
-        this.chooseCodeLanguage("primitive");
-        this.chooseExecutionLanguage("javascript");
-        $( '#step' ).click( UI.makeStep );
-        $( '#flush' ).click( UI.flush );
-        $( '#translate' ).click( UI.translate );
-        $( '#run' ).click( UI.run );
+        this.chooseCodeLanguage( "primitive" );
+        this.chooseExecutionLanguage( "javascript" );
+        $( '#step' ).click( this.makeStep );
+        $( '#flush' ).click( this.flush );
+        $( '#translate' ).click( this.translate );
+        $( '#run' ).click( this.run );
     };
 };
 
 var UI = new _UI();
 UI.start();
 CodeAreaValidator.setLanguage( UI.getCodeLanguage() );
-
-
-
-
-
-
-
-/*
-function exec( what, mem ) {
-
-    what.command.fnc( mem, what.pars );
-
-}
-
-
-
-function run() {
-
-
-
-}
-
-*/

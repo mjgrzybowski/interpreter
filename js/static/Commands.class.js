@@ -21,10 +21,16 @@ var JavaCommands = new _Commands();
 
 
 PrimitiveCommands.setListOfCommands({
+    "WW":{
+        numberOfPars: 1,
+        fnc:function( m, pars ){
+            console.log( pars );
+        }
+    },
     "SS":{
         numberOfPars: 2,
         fnc:function( m, pars ){
-            m[ pars[ 0 ] ] = Number( pars[ 1 ]);
+            m[ pars[ 0 ] ] = Number( pars[ 1 ] );
         }
     },
     "WZS":{
@@ -51,7 +57,7 @@ PrimitiveCommands.setListOfCommands({
     "IDL":{
         numberOfPars: 2,
         fnc:function( m, pars ){
-            if (m[ pars[ 0 ] ] !== 0 )
+            if ( m[ pars[ 0 ] ] !== 0 )
             {
                 lastExecutedLine = pars[ 1 ] - 1;
             }
@@ -64,4 +70,22 @@ PrimitiveCommands.setListOfCommands({
             flush();
         }
     }
+});
+
+JavaScriptCommands.setListOfCommands({
+    "var":{ //var nazwa = [argument];
+        numberOfPars: 2,
+        fnc:function( m, pars ){
+            m[ pars[ 0 ] ] = Number( pars[ 1 ]);
+        }
+    }
+
+});
+
+CppCommands.setListOfCommands({
+
+});
+
+JavaCommands.setListOfCommands({
+
 });

@@ -34,20 +34,21 @@ var _Msg = function() {
     this.odNowa = [ 'Zacznij od nowa', 'Clear & again', 'Clear & again', 'Clear & again', 'Clear & again', 'Clear & again' ];
     this.przetlumacz = [ 'Przetłumacz kod', 'Translate code', 'Translate code', 'Translate code', 'Translate code', 'Translate code' ];
     this.uruchom = [ 'Uruchom', 'Run', 'Start', 'Start', 'Start', 'Start' ];
+
+    this.onLoadLocale = function() {
+        Msg.loadLocale( Msg.langNr );
+    };
+
+    this.loadLocale = function( nr ){
+        // title
+        document.getElementById("title").innerHTML = Msg.appName[ nr ];
+        // buttons
+        document.getElementById("step").innerHTML = Msg.zrobKrok[ nr ];
+        document.getElementById("flush").innerHTML = Msg.odNowa[ nr ];
+        document.getElementById("translate").innerHTML = Msg.przetlumacz[ nr ];
+        document.getElementById("run").innerHTML = Msg.uruchom[ nr ];
+    };
+
 };
-
-function LoadLocale( nr ){
-    // title
-    document.getElementById("title").innerHTML = Msg.appName[ nr ];
-    // buttons
-    document.getElementById("step").innerHTML = Msg.zrobKrok[ nr ];
-    document.getElementById("flush").innerHTML = Msg.odNowa[ nr ];
-    document.getElementById("translate").innerHTML = Msg.przetlumacz[ nr ];
-    document.getElementById("run").innerHTML = Msg.uruchom[ nr ];
-}
-
-function onLoadLocale() {
-    LoadLocale( Msg.langNr );
-}
 
 var Msg = new _Msg();
