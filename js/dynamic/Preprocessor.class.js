@@ -6,6 +6,10 @@
  * To change this template use File | Settings | File Templates.
  */
 
+/**
+* @param lexer
+*/
+
 // obiekt, ktory pobiera informacje z lexera i przekazuje do interpretera
 var _Preprocessor = function( lexer ) {
     try{

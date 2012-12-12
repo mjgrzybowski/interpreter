@@ -15,6 +15,11 @@
 // klasa tworzaca obiekty Lekser, ktore "rozbieraja kod na czesci"
 //TODO: implementacja lexowania
 
+/**
+* @param language
+* @param tree
+*/
+
 var _Lexer = function( language, tree ) {
     this.lexerLanguage = language; // jezyk dla Lexera
     this.lexerTree = {}; // drzewo, na podstawie ktorego Lexer zadziala, zaleznie od jezyka

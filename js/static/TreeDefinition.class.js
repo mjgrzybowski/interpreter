@@ -8,6 +8,10 @@
 
 // definicja drzewa to sposób postępowania Leksera, który przygotowuje kod zgodnie z danym językiem
 
+/**
+* @param choice
+*/
+
 function _TreeDefinition(choice){
 
         this.choice = choice;

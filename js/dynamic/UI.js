@@ -6,14 +6,12 @@
  * To change this template use File | Settings | File Templates.
  */
 
-var currentCode = $( '#codeArea' ).val();
-
-function _UI(){
+var _UI = function(){
 
     this.memory = [];
     this.lastExecutedLine = 0;
-    this.codeLanguage = null;
-    this.executionLanguage = null;
+    this.codeLanguage = "primitive";
+    this.executionLanguage = "javascript";
     this.lineNumbers = { 0: 31, 1: "1" };
 
     this.getCodeLanguage = function() { return this.codeLanguage; };
@@ -31,7 +29,7 @@ function _UI(){
         }
 
         this.lineNumbers[ 1 ] = lineNumbersBuilder;
-        //document.getElementById( "lineNumbers" ).innerHTML = this.lineNumbers[ 1 ];
+        document.getElementById( "lineNumbers" ).innerHTML = UI.lineNumbers[ 1 ];
 
 
     };
@@ -48,9 +46,9 @@ function _UI(){
     };
 
     this.makeStep = function() {
-        this.lastExecutedLine++;
-        console.log( this.lastExecutedLine );
-        this.placeMarker( this.lastExecutedLine );
+        UI.lastExecutedLine++;
+        console.log( UI.lastExecutedLine );
+        UI.placeMarker( UI.lastExecutedLine );
         //this.executeLine( this.lastExecutedLine );
 
     };
@@ -87,7 +85,8 @@ function _UI(){
     };
 
     this.cleanCode = function() {
-
+        var currentCodeStart = $( '#codeArea' ).val();
+        var currentCode = currentCodeStart;
 
         var lnM1, ln;
         //var newCode;
@@ -103,7 +102,7 @@ function _UI(){
 
         }
 
-        $( '#codeArea' ).val(currentCode.join( '\n' ));
+        currentCodeStart = currentCode.join( '\n' );
     };
 
     this.chooseCodeLanguage = function( languageName ) {
@@ -126,20 +125,23 @@ function _UI(){
     this.start = function(){
         this.drawLineNumbers();
         this.cleanCode();
+        this.chooseCodeLanguage("primitive");
+        this.chooseExecutionLanguage("javascript");
+        $('#step').click( UI.makeStep );
+        $('#flush').click( UI.flush );
+        $('#translate').click( UI.translate );
+        $('#run').click( UI.run );
     };
 
-}
+};
 
 var UI = new _UI();
 UI.start();
 CodeAreaValidator.setLanguage(UI.getCodeLanguage());
 
-document.getElementById( "lineNumbers" ).innerHTML = UI.lineNumbers[ 1 ];
 
-$('#step').click( UI.makeStep );
-$('#flush').click( UI.flush );
-$('#translate').click( UI.translate );
-$('#run').click( UI.run );
+
+
 
 
 

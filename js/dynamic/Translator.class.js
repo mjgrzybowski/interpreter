@@ -6,8 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 
-//  Obiekt, ktory odpowiada za tlumaczenie wprowadzonego kodu na kod innego jezyka
+// Obiekt, ktory odpowiada za tlumaczenie wprowadzonego kodu na kod innego jezyka
 // Todo: zbudowac kompilator kodu
+
+/**
+* @param code
+* @param languageFrom
+* @param languageTo
+*/
 
 function _Translator( code, languageFrom, languageTo ) {
 

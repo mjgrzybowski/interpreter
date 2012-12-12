@@ -233,7 +233,7 @@ textarea#codeArea {
     left:30px
 }
 
-#labelForCodeAreaLanguageChoice, #labelForExecutionAreaLanguageChoice{
+#labelForCodeAreaLanguageChoice, #labelForExecutionAreaLanguageChoice, #labelForCodeArea{
     display: none;
 }
 

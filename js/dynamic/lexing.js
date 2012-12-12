@@ -8,6 +8,10 @@
 
 //
 
+/**
+* @param code
+*/
+
 function lexing( code ) {
 
     this.code = code;

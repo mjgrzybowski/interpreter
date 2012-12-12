@@ -10,8 +10,8 @@
 var _Commands = function() {
     this.listOfCommands = null; // lista komend jezyka (object of Language)
 
-    this.getListOfCommands = function() { return this.listOfCommands }; // pobieranie listy komend
-    this.setListOfCommands = function(change) { this.listOfCommands = change };
+    this.getListOfCommands = function() { return this.listOfCommands; }; // pobieranie listy komend
+    this.setListOfCommands = function( change ) { this.listOfCommands = change; };
 };
 
 var PrimitiveCommands = new _Commands();
@@ -51,7 +51,7 @@ PrimitiveCommands.setListOfCommands({
     "IDL":{
         numberOfPars: 2,
         fnc:function( m, pars ){
-            if (m[ pars[ 0 ] ] != 0 )
+            if (m[ pars[ 0 ] ] !== 0 )
             {
                 lastExecutedLine = pars[ 1 ] - 1;
             }

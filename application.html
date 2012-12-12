@@ -33,37 +33,10 @@
     <!-- All JavaScript at the bottom, except this Modernizr build.
          Modernizr enables HTML5 elements & feature detects for optimal performance.
          Create your own custom Modernizr build: www.modernizr.com/download/ -->
-    <script src="js/libs/modernizr-2.5.3.min.js"></script>
+    <script src="js/libs/modernizr-2.6.2.min.js"></script>
 
 
-    <!-- JavaScript area -->
-    <!-- static -->
-        <!--must be first-->
-        <script src="js/static/Msg.js"></script>
-
-        <script src="js/static/Code.class.js"></script>
-        <script src="js/static/Commands.class.js"></script>
-        <script src="js/static/Language.class.js"></script>
-        <script src="js/static/Operator.class.js"></script>
-        <script src="js/static/TreeDefinition.class.js"></script>
-    <!-- dynamic -->
-        <script src="js/dynamic/AreaValidator.class.js"></script>
-        <script src="js/dynamic/Compiler.class.js"></script>
-        <script src="js/dynamic/Interpreter.class.js"></script>
-        <script src="js/dynamic/Lexer.class.js"></script>
-        <script src="js/dynamic/Memory.class.js"></script>
-        <script src="js/dynamic/Method.class.js"></script>
-        <script src="js/dynamic/Preprocessor.class.js"></script>
-        <script src="js/dynamic/Translator.class.js"></script>
-        <script src="js/dynamic/VirtualMachine.js"></script>
-        <script src="js/dynamic/interpretation.js"></script>
-        <script src="js/dynamic/lexing.js"></script>
-        <script src="js/dynamic/preprocessing.js"></script>
-        <script src="js/dynamic/UI.js"></script>
-
-        <!-- Code in textarea loaded from js file -->
-        <script src="js/static/onLoadCode.js"></script>
-    <!-- end of JavaScript area -->
+    
 
 </head>
 <body onload="loadCode(); onLoadLocale();">
@@ -88,18 +61,7 @@
 <footer>
 
 </footer>
-<div id="code-container">
-        <label id="labelForCode" for="codeArea">Code</label>
-        <textarea id="codeArea" onchange="CodeAreaValidator.areaValidate('codeArea')"></textarea>
-        <div class="lineMarker" id="execMarker"></div>
-    <div id="lineNumbers" class="linesNumbers">1</div>
-</div>
 
-<div id="memory-container">
-
-
-
-</div>
 <div class="btn" id="step">Zrób krok</div>
 <div class="btn" id="flush">Zacznij od nowa</div>
 <div class="btn" id="translate">Przetłumacz</div>
@@ -122,12 +84,52 @@
         <option value="java">java</option>
     </select>
 </div>
+<div id="code-container">
+    <label id="labelForCodeArea" for="codeArea">Code</label>
+    <textarea id="codeArea" onchange="CodeAreaValidator.areaValidate( 'codeArea' );"></textarea>
+    <div class="lineMarker" id="execMarker"></div>
+    <div id="lineNumbers" class="linesNumbers">1</div>
+</div>
+
+<div id="memory-container">
+
+
+
+</div>
 <!--<div class="checklist"></div>-->
 
-<script src="js/libs/jquery-1.7.1.min.js"></script>
+<script src="js/libs/jquery-1.8.3.min.js"></script>
 
 <script src="js/plugins.js"></script>
-<script src="js/dynamic/UI.js"></script>
+<!-- JavaScript area -->
+    <!-- static -->
+        <!--must be first-->
+        <script src="js/static/Msg.js"></script>
+
+        <script src="js/static/Code.class.js"></script>
+        <script src="js/static/Commands.class.js"></script>
+        <script src="js/static/Language.class.js"></script>
+        <script src="js/static/Operator.class.js"></script>
+        <script src="js/static/TreeDefinition.class.js"></script>
+    <!-- dynamic -->
+        <script src="js/dynamic/AreaValidator.class.js"></script>
+        <script src="js/dynamic/Compiler.class.js"></script>
+        <script src="js/dynamic/Interpreter.class.js"></script>
+        <script src="js/dynamic/Lexer.class.js"></script>
+        <script src="js/dynamic/Memory.class.js"></script>
+        <script src="js/dynamic/Method.class.js"></script>
+        <script src="js/dynamic/Preprocessor.class.js"></script>
+        <script src="js/dynamic/Translator.class.js"></script>
+        <script src="js/dynamic/VirtualMachine.js"></script>
+        <script src="js/dynamic/interpretation.js"></script>
+        <script src="js/dynamic/lexing.js"></script>
+        <script src="js/dynamic/preprocessing.js"></script>
+        <script src="js/dynamic/UI.js"></script>
+        
+        <!-- Code in textarea loaded from js file -->
+        <script src="js/static/onLoadCode.js"></script>
+    <!-- end of JavaScript area -->
+
 
 </body>
 </html>

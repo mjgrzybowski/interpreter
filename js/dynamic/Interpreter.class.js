@@ -10,6 +10,10 @@
 // a następnie na język procesora Wirtualnej Maszyny
 //TODO: implementacja interpretowania
 
+/**
+* @param preprocessor
+*/
+
 function Interpreter( preprocessor ) {
 
 

@@ -9,7 +9,12 @@
 // Maszyna wirtualna
 // TODO: zrobić VirtualMachine
 
-function VirtualMachine(compiler,memory){
+/**
+* @param compiler
+* @param memory
+*/
+
+function VirtualMachine( compiler, memory ){
 
 
 }

@@ -7,11 +7,11 @@
  */
 
 // obiekt walidatora kodu
-function _AreaValidator(){
+var _AreaValidator = function(){
     this.language = null; // jezyk do walidacji
 
-    this.getLanguage = function() { return this.language }; // pobieranie jezyka
-    this.setLanguage = function( change ) { this.language = change }; // ustawianie jezyka
+    this.getLanguage = function() { return this.language; }; // pobieranie jezyka
+    this.setLanguage = function( change ) { this.language = change; }; // ustawianie jezyka
 
     // Funkcja uruchamia sie automatycznie, gdy zmieni sie kod w nameArea
     // funkcja, która na bierzaco sprawdza, czy kod wpisywany jest poprawnie
@@ -32,16 +32,16 @@ function _AreaValidator(){
         myNewCode = myNewCode.split( '\n' );
         for ( lineOfCode in myNewCode ){
             i = lineOfCode;
-            if( myNewCode[ i ] == "" )
+            if( myNewCode[ i ] === "" )
                 err++;
                 console.log("Linia " + ln + " zawiera blad: " + Msg.error1[ Msg.langNr ]);
 
             var arr = myNewCode[ i ].split( ':' );
 
-            if (arr[ 1 ] == undefined )
+            if (arr[ 1 ] === undefined )
                 console.log("Linia " + ln + " zawiera blad: " + Msg.error2[ Msg.langNr ]);
 
-            if (arr[ 2 ] != undefined)
+            if (arr[ 2 ] !== undefined)
                 console.log("Linia " + ln + " zawiera blad: " + Msg.error3[ Msg.langNr ]);
 
             for(com in commands){
@@ -50,7 +50,7 @@ function _AreaValidator(){
 
             }
 
-            if ( currentCommand == null )
+            if ( currentCommand === null )
                 return String( "Nierozpoznana komenda w linii " + ln );
 
             ln++;
@@ -59,14 +59,16 @@ function _AreaValidator(){
         if (UI.lineNumbers[ 0 ] < ln)
         UI.extendLineNumbers(ln - UI.lineNumbers[ 0 ]);
 
-        if(err == 0)
+        if(err === 0)
             return String("Parse done!");
         else
             return String("Parse done with " + err + "errors!");
 
-    }
+    };
 
-}
+
+
+};
 
 var CodeAreaValidator = new _AreaValidator();
 var ExecutionAreaValidator = new _AreaValidator();
@@ -105,32 +107,32 @@ function ParseLine( line ) {
     var com;
     var currentCommandLabel = null;
 
-    if( line == "" )
+    if( line === "" )
         return Msg.error1[ Msg.langNr ];
 
     var arr = line.split( ':' );
 
-    if (arr[ 1 ] == undefined )
+    if (arr[ 1 ] === undefined )
         return Msg.error2[ Msg.langNr ];
 
-    if (arr[ 2 ] != undefined)
+    if (arr[ 2 ] !== undefined)
         return String( "W linii jest wiecej niz jeden znak ':'" );
     var i;
     for ( com in commands ) {
         i = com;
-        if (com == arr[ 0 ] )
+        if (com === arr[ 0 ] )
         {
             currentCommand = commands[i];
             currentCommandLabel = com;
         }
     }
 
-    if ( currentCommand == null )
+    if ( currentCommand === null )
         return String( "Nierozpoznana komenda" );
 
     var pars =  arr[ 1 ].trim().split( ',' );
     var pL;
-    if (arr[ 1 ].trim() == "" )
+    if (arr[ 1 ].trim() === "" )
     {
         pL = 0;
         pars = [];
@@ -140,10 +142,10 @@ function ParseLine( line ) {
         pL = pars.length;
     }
 
-    if( pL != currentCommand.numberOfPars )
+    if( pL !== currentCommand.numberOfPars )
         return String("Zla liczba parametrow komendy, " + currentCommandLabel + " przyjmuje " + currentCommand.numberOfPars + "parametrow, otrzymala " + pL);
 
-    if( pL != 0 )
+    if( pL !== 0 )
         var j = 0;
     var p;
     for ( p in pars )
