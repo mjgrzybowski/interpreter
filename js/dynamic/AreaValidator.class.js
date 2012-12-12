@@ -25,44 +25,65 @@ var _AreaValidator = function(){
     this.parseNewCode = function( code, language ) {
         var myNewCode = code;
         var com;
+        var commands;
+            if (language = "primitive")
+                commands = PrimitiveCommands.getListOfCommands();
+            else if (language = "javascript")
+                commands = JavaScriptCommands.getListOfCommands();
+            else if (language = "cpp")
+                commands = CppCommands.getListOfCommands();
+            else
+                commands = JavaCommands.getListOfCommands();
         var lineOfCode;
         var err = 0;
 
         var i, j, ln = 1;
         myNewCode = myNewCode.split( '\n' );
-        for ( lineOfCode in myNewCode ){
+        for ( lineOfCode in myNewCode ) {
             i = lineOfCode;
-            if( myNewCode[ i ] === "" )
+            if( myNewCode[ i ] === "" ) {
                 err++;
-                console.log("Linia " + ln + " zawiera blad: " + Msg.error1[ Msg.langNr ]);
+                console.log( "Linia " + ln + " zawiera blad: " + Msg.error1[ Msg.langNr ] );
+            }
 
             var arr = myNewCode[ i ].split( ':' );
 
-            if (arr[ 1 ] === undefined )
-                console.log("Linia " + ln + " zawiera blad: " + Msg.error2[ Msg.langNr ]);
-
-            if (arr[ 2 ] !== undefined)
-                console.log("Linia " + ln + " zawiera blad: " + Msg.error3[ Msg.langNr ]);
-
-            for(com in commands){
-                j = com;
-
-
+            if ( arr[ 1 ] === undefined ) {
+                err++;
+                console.log( "Linia " + ln + " zawiera blad: " + Msg.error2[ Msg.langNr ] );
             }
 
-            if ( currentCommand === null )
-                return String( "Nierozpoznana komenda w linii " + ln );
+            if ( arr[ 2 ] !== undefined ) {
+                err++;
+                console.log( "Linia " + ln + " zawiera blad: " + Msg.error3[ Msg.langNr ] );
+            }
 
+            if ( !( arr[ 0 ] in commands ) ){
+                err++;
+                console.log( String( "Nierozpoznana komenda w linii " + ln ) );
+            }
+
+            /*
+
+            for( com in commands ){
+                j = com;
+                if (j === arr[ 0 ] )
+                {
+                    currentCommand = commands[ i ];
+                    currentCommandLabel = com;
+                }
+            }
+            */
             ln++;
         }
 
-        if (UI.lineNumbers[ 0 ] < ln)
-        UI.extendLineNumbers(ln - UI.lineNumbers[ 0 ]);
+        if ( UI.lineNumbers[ 0 ] < ln )
+        UI.extendLineNumbers( ln - UI.lineNumbers[ 0 ] );
 
-        if(err === 0)
-            return String("Parse done!");
+        if( err === 0 )
+            return String( "Parse done, no errors!" );
         else
-            return String("Parse done with " + err + "errors!");
+            return String( "Parse done with " + err + " error(s)!" );
 
     };
 

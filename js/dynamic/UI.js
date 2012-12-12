@@ -44,34 +44,42 @@ var _UI = function(){
             'top': 3 + 16 * ( nol - 1 )
         }, 200 );
     };
-
+    // TODO code execution with memory association
     this.makeStep = function() {
         UI.lastExecutedLine++;
-        console.log( UI.lastExecutedLine );
+        console.log( UI.lastExecutedLine + " line done.");
         UI.placeMarker( UI.lastExecutedLine );
         //this.executeLine( this.lastExecutedLine );
-
     };
-/*
+
+    /*
+
     this.executeLine = function( n ) {
         var currentCode = $( '#codeArea' ).val();
         //var lnM1, ln;
         currentCode = currentCode.split( '\n' );
 
-        var bold = ParseLine( currentCode[ n-1 ] );
-        if( typeof( bold ) != "string" )
+        var willDo = ParseLine( currentCode[ n-1 ] );
+        if( typeof( willDo ) != "string" )
         {
-            exec( bold, memory );
-            console.log( memory );
+            exec( willDo, this.memory );
+            console.log( this.memory );
         }
         else
         {
-            if( bold != "blank" )
-                alert( 'blad w linii nr: ' + bold );
+            if( willDo != "blank" )
+                alert( 'blad w linii nr: ' + willDo );
         }
 
     };
-*/
+
+    this.exec = function( what, mem ){
+
+        what.command.fnc( mem, what.pars );
+
+    };
+    */
+
     this.flush = function() {
         this.memory = [];
         this.lastExecutedLine = 0;
@@ -94,28 +102,21 @@ var _UI = function(){
 
         for (lnM1 in currentCode )
         {
-
             ln = lnM1 + 1;
             var k = 0;
             currentCode[ k ] = currentCode[ k ].trim();
             k++;
-
         }
-
         currentCodeStart = currentCode.join( '\n' );
     };
 
     this.chooseCodeLanguage = function( languageName ) {
-
         CodeAreaValidator.setLanguage(languageName);
         this.codeLanguage = languageName;
-
     };
 
     this.chooseExecutionLanguage = function( languageName ) {
-
         this.executionLanguage = languageName;
-
     };
 
     this.run = function(){
@@ -127,17 +128,16 @@ var _UI = function(){
         this.cleanCode();
         this.chooseCodeLanguage("primitive");
         this.chooseExecutionLanguage("javascript");
-        $('#step').click( UI.makeStep );
-        $('#flush').click( UI.flush );
-        $('#translate').click( UI.translate );
-        $('#run').click( UI.run );
+        $( '#step' ).click( UI.makeStep );
+        $( '#flush' ).click( UI.flush );
+        $( '#translate' ).click( UI.translate );
+        $( '#run' ).click( UI.run );
     };
-
 };
 
 var UI = new _UI();
 UI.start();
-CodeAreaValidator.setLanguage(UI.getCodeLanguage());
+CodeAreaValidator.setLanguage( UI.getCodeLanguage() );
 
 
 
