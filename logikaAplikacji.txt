@@ -1,0 +1,107 @@
+
+Algorytm = mozliwosci aplikacji
+
+1. Uruchamiam aplikacje
+2. Wpisuje kod do lewego obszaru pamietajac o kolejnosci: FUNKCJA: argument1[, argument2][,argument3]
+3. Uzywajac przycisku Zrob krok poruszam sie po kazdej linijce w dol az do konca kodu (END:)
+4. Po sprawdzeniu kodu moge rozpoczac od nowa (Zacznij od nowa), moge przetlumaczyc kod na inny jezyk, albo go uruchomic
+5. Zacznij od nowa czysci pamiec i przenosi pasek na 1 pozycje
+6. Przetlumacz uruchamia Lexer i pozostale dynamiczne obiekty dajac w efekcie kod w innym jezyku (moge wybrac jakim)
+7. Uruchom automatycznie wlacza Przetlumacz, a nastepnie uruchamia kod z prawego obszaru
+
+
+OPIS PRYMITYWNEGO JEZYKA:
+
+PSEUDOJĘZYK
+
+I. Ogólne zasady:
+
+- program składa się z linii, które mają swoje numery
+- działanie programu zaczyna się od pierwszej linii
+- po wykonaniu instrukcji, która nie jest instrukcją sterującą wykonuje się kolejna linia programu
+- nowa linia zawiera tylko jedną instrukcję
+- jeśli interpreter napotka pusta linię, to przechodzi do następnej
+- każda niepusta linia sklada się kolejno z:
+  a) nazwy instrukcji
+  b) dwukropka
+  c) argumentów przedzielonych przecinkami
+- argumentami mogą być tylko nazwy skrytek, liczby, ciagi znakow
+- nazwy skrytek pisane są małymi literami, nie mogą zawierać spacji i liczb
+- skrytka nie może być pusta
+- jedyną możliwą zawartością skytki jest liczba
+
+II. Komendy:
+
+
+WYPISZ_WYRAZENIE: tekst
+skrót: WW
+niesterująca
+przyjmuje ciag znakow jako arument
+wypisuje w konsoli tekst podany po dwukropku
+przyklad zastosowania: WYPISZ_WYRAZENIE: hello world
+przyklad złego zastosowania: WYPISZ_WYRAZENIE: hello,hello
+
+
+STWORZ_SKRYTKE: a,1
+skrót: SS
+niesterująca
+przyjmuje dwa arumenty
+tworzy skrytkę o podanej nazwie z zawartością liczbową
+przyklad zastosowania: STWORZ_SKRYTKE: a,1
+przyklad złego zastosowania: STWORZ_SKRYTKE: a,a
+
+
+WYMIEN_ZAWARTOSC_SKRYTKI: a,1
+skrót: WZS
+niesterująca
+przyjmuje dwa argumenty
+sprawia, że skytka przyjmuje podaną wartośc liczbową
+przykład zastosowania: WYMIEN_ZAWARTOSC_SKRYTKI: a,1
+przykład złego zastosowania: WYMIEN_ZAWARTOSC_SKRYTKI: 1,1
+
+
+SKOPIUJ_ZAWARTOSC: a,b
+skrót: SZ
+niesterująca
+przyjmuje dwa argumenty
+ustawia zawartość skrzynki drugiej na pierwszą
+przykład zastosowania: SKOPIUJ_ZAWARTOSC: a,b
+przykład złego zastosowania: SKOPIUJ_ZAWARTOSC: a,1
+
+
+ZWIEKSZ_ZAWARTOSC_SKRYTKI_O_JEDEN: c
+skrót: ZWJ
+niesterująca
+przyjmuje jeden argument
+zwiększa wartość podanej skrzynki o jeden
+przykład zastosowania: ZWIEKSZ_ZAWARTOSC_SKRYTKI_O_JEDEN: c
+przykład złego zastosowania: ZWIEKSZ_ZAWARTOSC_SKRYTKI_O_JEDEN: 2
+
+
+ZMNIEJSZ_ZAWARTOSC_SKRYTKI_O_JEDEN: c
+skrót: ZMJ
+niesterująca
+przyjmuje jeden argument
+zmniejsza wartość podanej skrzynki o jeden
+przykład zastosowania: ZMNIEJSZ_ZAWARTOSC_SKRYTKI_O_JEDEN: c
+przykład złego zastosowania: ZMNIEJSZ_ZAWARTOSC_SKRYTKI_O_JEDEN: 2
+
+
+IDZ_DO_LINI_JESLI: a, 3
+skrót: IDL
+sterująca
+przyjmuje dwa argumenty
+pierwszy argument: jeżeli jest rózny od zera to wtedy instrukcja wykonuje przeskok
+drugi argument: numer lini do której następuje przeskok
+przyklad zastosowania: IDZ_DO_LINI_JESLI: a, 3
+przyklad złego zastosowania: IDZ_DO_LINI_JESLI: a, a
+
+
+KONIEC
+END
+niesterująca
+nie przyjmuje argumentów
+komenda kończąca działanie programu
+
+skrótowe nazwy komend
+
