@@ -14,13 +14,13 @@ var _Commands = function() {
     this.setListOfCommands = function( change ) { this.listOfCommands = change; };
 };
 
-var PrimitiveCommands = new _Commands();
+var PseudoCommands = new _Commands();
 var JavaScriptCommands = new _Commands();
 var CppCommands = new _Commands();
 var JavaCommands = new _Commands();
 
 
-PrimitiveCommands.setListOfCommands({
+PseudoCommands.setListOfCommands({
     "WW":{
         numberOfPars: 1,
         fnc:function( m, pars ){

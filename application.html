@@ -69,7 +69,7 @@
 <div id="codeAreaLanguageChoice">
     <label id="labelForCodeAreaLanguageChoice" for="chooseCodeAreaLanguage">Code Area Language Choice</label>
     <select id="chooseCodeAreaLanguage" name="language" onchange="chooseCodeLanguage(this.options[selectedIndex].text);">
-        <option value="pr" selected>primitive</option>
+        <option value="pr" selected>pseudo</option>
         <option value="js">javascript</option>
         <option value="cpp">cpp</option>
         <option value="java">java</option>
@@ -78,7 +78,7 @@
 <div id="executionAreaLanguageChoice">
     <label id="labelForExecutionAreaLanguageChoice" for="chooseExecutionAreaLanguage">Execution Area Language Choice</label>
     <select id="chooseExecutionAreaLanguage" name="language" onchange="chooseExecutionLanguage(this.options[selectedIndex].text);">
-        <option value="pr">primitive</option>
+        <option value="pr">pseudo</option>
         <option value="js" selected>javascript</option>
         <option value="cpp">cpp</option>
         <option value="java">java</option>
@@ -103,7 +103,7 @@
 <script src="js/plugins.js"></script>
 <!-- JavaScript area -->
     <!-- static -->
-        <!--must be first-->
+        <!--must be first because of locale-->
         <script src="js/static/Msg.js"></script>
 
         <script src="js/static/Code.class.js"></script>

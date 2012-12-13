@@ -9,16 +9,23 @@
 //
 
 /**
-* @param code
+* @param codeParameter
+* @param treeParameter
 */
 
-function lexing( code ) {
+function lexing( codeParameter , treeParameter) {
 
-    this.code = code;
+    var code = codeParameter;
+    var tree = treeParameter.getTree();
+    var lexingResult = [];
+    var branch, i;
+    for ( branch in tree )
+    {
+        i = branch;
+        lexingResult = code.split( tree[ i ] );
+    }
+    //console.log(tree);
 
-    var tree = this.code.split( '\n' );
-    console.log(tree);
-    var lexingResult;
 
     return lexingResult;
 }

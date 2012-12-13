@@ -10,7 +10,7 @@ var _UI = function(){
 
     var memory = [];
     var lastExecutedLine = 0;
-    var codeLanguage = "primitive";
+    var codeLanguage = "pseudo";
     var executionLanguage = "javascript";
     var lineNumbers = { 0: 1, 1: "1" };
 
@@ -146,7 +146,7 @@ var _UI = function(){
 
     this.start = function() {
         this.drawLineNumbers();
-        this.chooseCodeLanguage( "primitive" );
+        this.chooseCodeLanguage( "pseudo" );
         this.chooseExecutionLanguage( "javascript" );
         $( '#step' ).click( this.makeStep );
         $( '#flush' ).click( this.flush );
