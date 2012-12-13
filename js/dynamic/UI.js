@@ -12,7 +12,7 @@ var _UI = function(){
     var lastExecutedLine = 0;
     var codeLanguage = "pseudo";
     var executionLanguage = "javascript";
-    var lineNumbers = { 0: 1, 1: "1" };
+    var lineNumbers = { 0: 6, 1: "1" };
 
     this.getCodeLanguage = function() { return codeLanguage; };
     //this.setCodeLanguage = function( c ){ codeLanguage = c; };
