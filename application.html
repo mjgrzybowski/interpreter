@@ -68,7 +68,7 @@
 <div class="btn" id="run">Uruchom</div>
 <div id="codeAreaLanguageChoice">
     <label id="labelForCodeAreaLanguageChoice" for="chooseCodeAreaLanguage">Code Area Language Choice</label>
-    <select id="chooseCodeAreaLanguage" name="language" onchange="chooseCodeLanguage(this.options[selectedIndex].text);">
+    <select id="chooseCodeAreaLanguage" name="language" onchange="UI.chooseCodeLanguage(this.options[selectedIndex].text);">
         <option value="pr" selected>pseudo</option>
         <option value="js">javascript</option>
         <option value="cpp">cpp</option>
@@ -77,7 +77,7 @@
 </div>
 <div id="executionAreaLanguageChoice">
     <label id="labelForExecutionAreaLanguageChoice" for="chooseExecutionAreaLanguage">Execution Area Language Choice</label>
-    <select id="chooseExecutionAreaLanguage" name="language" onchange="chooseExecutionLanguage(this.options[selectedIndex].text);">
+    <select id="chooseExecutionAreaLanguage" name="language" onchange="UI.chooseExecutionLanguage(this.options[selectedIndex].text);">
         <option value="pr">pseudo</option>
         <option value="js" selected>javascript</option>
         <option value="cpp">cpp</option>

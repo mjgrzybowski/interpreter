@@ -31,8 +31,6 @@ var _UI = function(){
 
         lineNumbers[ 1 ] = lineNumbersBuilder;
         document.getElementById( "lineNumbers" ).innerHTML = lineNumbers[ 1 ];
-
-
     };
 
     this.extendLineNumbers = function( n ){
@@ -48,7 +46,7 @@ var _UI = function(){
     // TODO code execution with memory association
     this.makeStep = function() {
         lastExecutedLine++;
-        console.log( lastExecutedLine + " line done.");
+        console.log( lastExecutedLine + " line done." );
         UI.placeMarker( lastExecutedLine );
         //executeLine( lastExecutedLine );
     };
@@ -108,32 +106,34 @@ var _UI = function(){
     };
 
     this.chooseCodeLanguage = function( languageName ) {
-        CodeAreaValidator.setLanguage(languageName);
+        CodeAreaValidator.setLanguage( languageName );
         codeLanguage = languageName;
+        console.log( "Code language set up to: " + languageName );
     };
 
     this.chooseExecutionLanguage = function( languageName ) {
         executionLanguage = languageName;
+        console.log( "Execution code language set up to: " + languageName );
     };
 
     this.run = function(){
 
     };
 
-    this.getTimeNow = function(){
+    this.getTimeNow = function() {
         var timeNow = [];
         if ( new Date().getHours() < 10 )
-            timeNow[0] = "0" + new Date().getHours();
+            timeNow[ 0 ] = "0" + new Date().getHours();
         else
-            timeNow[0] = new Date().getHours();
+            timeNow[ 0 ] = new Date().getHours();
         if ( new Date().getMinutes() < 10 )
-            timeNow[1] = "0" + new Date().getMinutes();
+            timeNow[ 1 ] = "0" + new Date().getMinutes();
         else
-            timeNow[1] = new Date().getMinutes();
+            timeNow[ 1 ] = new Date().getMinutes();
         if ( new Date().getSeconds() < 10 )
-            timeNow[2] = "0" + new Date().getSeconds();
+            timeNow[ 2 ] = "0" + new Date().getSeconds();
         else
-            timeNow[2] = new Date().getSeconds();
+            timeNow[ 2 ] = new Date().getSeconds();
 
         return timeNow[ 0 ] + ":" + timeNow[ 1 ] + ":" + timeNow[ 2 ];
     };
