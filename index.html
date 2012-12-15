@@ -51,7 +51,7 @@
         }
         var i;
         for (i = 0; i < languageCodes.length - 1; i++ ) {
-            if (languageInfo.substr( 0, 2 ) == languageCodes[ i ] ) {
+            if (languageInfo.substr( 0, 2 ) === languageCodes[ i ] ) {
                 redirectPage( languageRedirects[ i ] );
                 goToDefault = 0;
                 break
@@ -88,8 +88,7 @@
 
   <script src="js/libs/jquery-1.8.3.min.js"></script>
 
-  <script src="js/plugins.js"></script>
-  <script src="js/script.js"></script>
+  <script src="js/plugins.js"></script>  
 
 </body>
 </html>

@@ -23,13 +23,13 @@ var  _TreeDefinition = function( choice ){
     this.getTree = function() { return tree; };
     this.setTree = function( treeToSet ) { tree = treeToSet; };
 
-    if ( choice = "pseudo" )
+    if ( choice === "pseudo" )
         tree = pseudoTree;
-    else if ( choice = "javascript" )
+    else if ( choice === "javascript" )
         tree = javaScriptTree;
-    else if ( choice = "cpp" )
+    else if ( choice === "cpp" )
         tree = cppTree;
-    else if ( choice = "java" )
+    else if ( choice === "java" )
         tree = javaTree;
     else
         console.log( "ERROR, language for tree unknown!" );

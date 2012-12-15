@@ -30,7 +30,7 @@ var _UI = function(){
         }
 
         lineNumbers[ 1 ] = lineNumbersBuilder;
-        document.getElementById( "lineNumbers" ).innerHTML = lineNumbers[ 1 ];
+        document.getElementById( 'lineNumbers' ).innerHTML = lineNumbers[ 1 ];
     };
 
     this.extendLineNumbers = function( n ){
@@ -54,7 +54,7 @@ var _UI = function(){
     /*
 
     executeLine = function( n ) {
-        var currentCode = $( '#codeArea' ).val();
+        var currentCode = document.getElementById( 'codeArea' ).value;
         //var lnM1, ln;
         currentCode = currentCode.split( '\n' );
 
@@ -91,7 +91,7 @@ var _UI = function(){
     };
 
     this.cleanCode = function() {
-        var currentCode = $( '#codeArea' ).val();
+        var currentCode = document.getElementById( 'codeArea' ).value;
         var lnM1, ln;
         //var newCode;
         currentCode = currentCode.split( '\n' );
@@ -117,7 +117,34 @@ var _UI = function(){
     };
 
     this.run = function(){
+        var string;
+        var execution = document.getElementById( "execArea" );
+        execution.value = "";
+        var d = new Date().getTime();
+        try {
+            with (Math) {
+                string = UI.exec( eval( document.getElementById( "codeArea" ).value ) );
+            }
+        } catch(e) {
+            string = e.name + " at line " + ( e.lineNumber - 56 ) + ": " + e.message;
+        }
+        var czas = document.getElementById( "timing" );
+        czas.innerHTML = "Czas: " + ( new Date().getTime() - d ) / 1000 + " s";
+        if ( string !== undefined ) { execution.value += string; }
+    };
 
+    this.exec = function(a) {
+        var str = "[";
+        if ( typeof( a ) === "object" && a.length ) {
+            for ( var i = 0; i < a.length; i++ ) 
+                if (typeof( a[ i ] ) === "object" && a[ i ].length ) {
+                    str += ( i === 0 ? "" : " " ) + "[";
+                    for ( var j = 0; j < a[ i ].length; j++) 
+                        str += a[ i ][ j ] + ( j === a[ i ].length - 1 ?
+                                "]" + ( i === a.length - 1 ? "]" : "," ) + "\n" : ", " );
+                } else str += a[ i ] + (i === a.length - 1 ? "]" : ", " );
+        } else str = a;
+        return str;
     };
 
     this.getTimeNow = function() {
@@ -139,9 +166,10 @@ var _UI = function(){
     };
 
     this.loadCode = function() {
-        //var sampleCode1 = "SS: a,3\nSS: b,4\nSS: n,0\nSS: m,0\nSS: wynik,0\nSZ: b,m\n\nSZ: a,n\n\nZWJ: wynik\nZMJ: n\n\nIDL: n,9\n\nZMJ: m\n\nIDL:m,7\n\nEND:";
+        var sampleCode1 = "SS: a,3\nSS: b,4\nSS: n,0\nSS: m,0\nSS: wynik,0\nSZ: b,m\n\nSZ: a,n\n\nZWJ: wynik\nZMJ: n\n\nIDL: n,9\n\nZMJ: m\n\nIDL:m,7\n\nEND:";
         var sampleCode2 = "WW: witaj swiecie\nSS: a,3\nSS: b,4\nZWJ: a\nZMJ: b\nEND:";
-        document.getElementById( "codeArea" ).value = sampleCode2;
+        var sampleCodeJS3 = "var a = 1;\nvar b = 2;\nvar wynik;\nwynik = a + b;";
+        document.getElementById( "codeArea" ).value = sampleCodeJS3;
     };
 
     this.start = function() {
