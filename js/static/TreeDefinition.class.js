@@ -12,8 +12,10 @@
 * @param choice
 */
 
-function _TreeDefinition(choice){
+function _TreeDefinition(tokens){
 
-        this.choice = choice;
+        this.tokens = tokens;
 
+        this.getTokens = function() { return this.tokens; }; // pobieranie drzewa dla Preprocesora
+        this.setTokens = function( change ) { this.tokens = tokens; }; // zmiana drzewa dla Preprocesora
 }

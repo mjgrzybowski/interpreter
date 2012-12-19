@@ -14,10 +14,19 @@ var _Language = function( name ){
     this.operator = null; // tablica operatorow
     this.method = null; // tablica metod
     this.literal = null; // literaly = cyfry, litery, ciagi znakow
-    this.treeForPreprocessor = { }; // obiekt odpowiadajacy za budowanie drzewa dla Lexera, oparty na RegEx?
+    this.treeForLexer = { }; // obiekt odpowiadajacy za budowanie drzewa dla Lexera, oparty na RegEx?
 
     this.getName = function() { return this.name; }; // pobieranie nazwy jezyka
-    this.getTreeForPreprocessor = function() { return this.treeForPreprocessor; }; // pobieranie drzewa dla Preprocesora
-    this.setTreeForPreprocessor = function( change ) { this.treeForPreprocessor = change; }; // zmiana drzewa dla Preprocesora
+    this.getTreeForLexer = function() { return this.treeForLexer; }; // pobieranie drzewa dla Preprocesora
+    this.setTreeForLexer = function( change ) { this.treeForLexer = change; }; // zmiana drzewa dla Preprocesora
 
 };
+
+PseudoCode = new _Language("PseudoCode");
+
+PseudoCode.setTreeForLexer(new _TreeDefinition([
+    ["\n","newline"],
+    [":","eval"],
+    [",","seperator"]
+]));
+

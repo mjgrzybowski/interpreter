@@ -20,9 +20,9 @@
  * @param tree
  */
 
-var _Lexer = function (language, tree) {
+var _Lexer = function (language) {
     this.lexerLanguage = language; // jezyk dla Lexera
-    this.lexerTree = {}; // drzewo, na podstawie ktorego Lexer zadziala, zaleznie od jezyka
+    this.lexerTree = language.getTreeForLexer(); // drzewo, na podstawie ktorego Lexer zadziala, zaleznie od jezyka
 
     this.setLexerTreeAndLanguage = function (tree, language) // zmiana drzewa i jezyka
     {
@@ -36,60 +36,47 @@ var _Lexer = function (language, tree) {
         return this.lexerLanguage;
     };
 
+    this.buildTree = function (code) {
 
-    this.init = function (treeDef) {
+        this.nodes = [[code.getContent(),0,"code"]];
+        this.links = [[]];
+        var cursor = 1;
+        cursorBeforePrevBloc=0;
+        var deff = this.lexerTree.getTokens();
 
-        this.nodes = treeDef[0];
-        this.links = [
-            []
-        ];
+        var tempArr2 = [],tempArr = [],cursorBeforePrevBloc,cursorBeforeThisBlock,dId,nnId;
 
-        console.log(treeDef);
-        this.links = [
-            []
-        ];
-        this.nodes = [];
-
-        if (treeDef.length == 1) {
-            this.nodes = treeDef;
-        }
-        else {
-            this.nodes = [treeDef[0]];
-            that = this;
-            this.treeDefTravPre(treeDef, function (n, p) {
-                that.linkNewNode(n, p)
-            }, null);
-        }
-
-        this.buildTree();
-    }
-
-    this.buildTree = function () {
-        var deff = ['\n', ':', ','];
-        var tempArr = [];
-        var i = 0, j = 1;
-        var k = 1000;//ograniczenie na czas eksperymentow, anty zapetlenie
-        oldNodes = [this.nodes[0]];
         for (dId in deff) {
-            initialNodesLForThisSymbol = this.nodes.length;
 
-            tempArr = [];
-            tempArr2 = [];
-            for (nId in oldNodes) {
+            cursorBeforeThisBlock = cursor;
 
-                tempArr2 = oldNodes[nId].split(deff[dId]);
-                for (nnId in tempArr2) {
-                    this.linkNewNode(tempArr2[nnId], oldNodes[nId]);
+            for (nId=cursorBeforePrevBloc;nId<cursorBeforeThisBlock;nId++) {
+
+                tempArr2 = this.nodes[nId][0].split(deff[dId][0]);
+                if(tempArr2.length>1)
+                {
+                    this.nodes[nId][0]=deff[dId][0];
+                    this.nodes[nId][2]=deff[dId][1];
+                    for (nnId in tempArr2) {
+                        this.linkNewNode([tempArr2[nnId],cursor,null], this.nodes[nId]);
+                        cursor++;
+                    }
                 }
-
                 tempArr = tempArr.concat(tempArr2);
             }
-            oldNodes = tempArr;
-
-
+            cursorBeforePrevBloc=cursorBeforeThisBlock;
 
         }
-        console.log(this.nodes);
+
+        var output;
+
+        this.treeDefTravPre(
+            this.preOrder(this.nodes[0]),function(n){
+                output.push[n[0],[2]];
+            }
+        )
+
+        return output;
     };
 
     this.linkNewNode = function (newNode, treeNode) {
@@ -175,7 +162,7 @@ var _Lexer = function (language, tree) {
     this.deatachSubTree = function (treeNodeA, treeNodeB) {
         var sb = this.getSubTree(treeNodeB, treeNodeA);
         that = this;
-        treeDefTravPost(sb, function (n) {
+        this.treeDefTravPost(sb, function (n) {
             that.removeLeafNode(n);
         });
 
@@ -199,18 +186,13 @@ var _Lexer = function (language, tree) {
         return [treeNode, toReturn];
     };
 
-    this.levelOrder = function () {
-
-    };
-
-
     this.treeDefTravPre = function (treeDef, f) {
         if (arguments[2] !== null) {
             f(treeDef[0], arguments[2])
         }
         if (treeDef[1].length > 0) {
             for (nId in treeDef[1]) {
-                treeDefTravPre(treeDef[1][nId], f, treeDef[0]);
+                this.treeDefTravPre(treeDef[1][nId], f, treeDef[0]);
             }
         }
     }
@@ -218,10 +200,9 @@ var _Lexer = function (language, tree) {
     this.treeDefTravPost = function (treeDef, f) {
         if (treeDef[1].length > 0) {
             for (nId in treeDef[1]) {
-                treeDefTravPost(treeDef[1][nId], f, treeDef[0]);
+                this.treeDefTravPost(treeDef[1][nId], f, treeDef[0]);
             }
         }
         f(treeDef[0], arguments[2])
     }
-    this.init([document.getElementById("codeArea").value]);
 };

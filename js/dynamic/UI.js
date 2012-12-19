@@ -10,8 +10,8 @@ var _UI = function(){
 
     var memory = [];
     var lastExecutedLine = 0;
-    var codeLanguage = "primitive";
-    var executionLanguage = "javascript";
+    var codeLanguage = PseudoCode;
+    var executionLanguage = PseudoCode;
     var lineNumbers = { 0: 1, 1: "1" };
 
     this.getCodeLanguage = function() { return codeLanguage; };
@@ -107,17 +107,23 @@ var _UI = function(){
         document.getElementById( 'codeArea' ).value = currentCode.join( '\n' );
     };
 
-    this.chooseCodeLanguage = function( languageName ) {
-        CodeAreaValidator.setLanguage(languageName);
-        codeLanguage = languageName;
+    this.chooseCodeLanguage = function( language ) {
+        CodeAreaValidator.setLanguage(language);
+        codeLanguage = language;
     };
 
-    this.chooseExecutionLanguage = function( languageName ) {
-        executionLanguage = languageName;
+    this.chooseExecutionLanguage = function( language ) {
+        executionLanguage = language;
     };
 
     this.run = function(){
-
+        var UI = this;
+        return function(){
+            var Lexer = new _Lexer(UI.getCodeLanguage());
+            CodeInput.setCodeLanguage(UI.getCodeLanguage());
+            CodeInput.setContent(document.getElementById( "codeArea" ).value);
+            Lexer.buildTree(CodeInput)
+        }
     };
 
     this.getTimeNow = function(){
@@ -146,12 +152,10 @@ var _UI = function(){
 
     this.start = function() {
         this.drawLineNumbers();
-        this.chooseCodeLanguage( "primitive" );
-        this.chooseExecutionLanguage( "javascript" );
         $( '#step' ).click( this.makeStep );
         $( '#flush' ).click( this.flush );
         $( '#translate' ).click( this.translate );
-        $( '#run' ).click( this.run );
+        $( '#run' ).click( this.run() );
     };
 };
 
