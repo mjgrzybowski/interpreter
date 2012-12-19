@@ -233,7 +233,17 @@ textarea#codeArea {
     left:30px
 }
 
-#labelForCodeAreaLanguageChoice, #labelForExecutionAreaLanguageChoice, #labelForCodeArea{
+textarea#execArea {
+    width:254px;
+    height:500px;
+    font-family: monospace;
+    z-index:20;
+    position:absolute;
+    background: none;
+/*    left:10px*/
+}
+
+#labelForCodeAreaLanguageChoice, #labelForExecutionAreaLanguageChoice, #labelForCodeArea, #labelForExecutionArea{
     display: none;
 }
 
@@ -315,7 +325,12 @@ div#executionAreaLanguageChoice {
 
 }
 
+#timing {
+    position:absolute;
 
+    left:390px;
+    top:280px;
+}
 
 
 /* ==|== media queries ======================================================

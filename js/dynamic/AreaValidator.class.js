@@ -18,7 +18,7 @@ var _AreaValidator = function(){
     this.areaValidate = function( nameArea ) {
         UI.cleanCode();
         this.myNewCode = document.getElementById( nameArea ).value;
-        console.log(this.parseNewCode( this.myNewCode, this.language ));
+        console.log( this.parseNewCode( this.myNewCode, this.language ) );
 
         //console.log("ok");
     };
@@ -27,8 +27,8 @@ var _AreaValidator = function(){
         var myNewCode = code;
         //var com;
         var commands;
-            if ( language === "primitive")
-                commands = PrimitiveCommands.getListOfCommands();
+            if ( language === "pseudo")
+                commands = PseudoCommands.getListOfCommands();
             else if ( language === "javascript")
                 commands = JavaScriptCommands.getListOfCommands();
             else if ( language === "cpp")
