@@ -186,3 +186,6 @@ var _UI = function(){
 var UI = new _UI();
 UI.start();
 CodeAreaValidator.setLanguage( UI.getCodeLanguage() );
+addListener(document, "DOMContentLoaded", UI.loadCode());
+addListener(document, "DOMContentLoaded", UI.cleanCode());
+
