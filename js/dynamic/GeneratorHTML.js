@@ -47,10 +47,10 @@ var _Generator = function() {
         return table;
     };
 
-    this.getCellHandle = function(tableObject, row, col){
+/*    this.getCellHandle = function(tableObject, row, col){
         var cells = tableObject.getElementsByTagName("td");
         return cells[row*col];
-    };
+    };*/
 
     this.createBodyImageElement = function(imageSrc, imageStyle, imageAlt){
         var image = document.createElement('image');
@@ -168,26 +168,17 @@ var _Generator = function() {
         Generator.getHTML().headElem.metaDesc2 = Generator.createHeadMetaElement("viewport", "width=device-width");
 
         // head css
-        Generator.getHTML().headElem.css1 = Generator.createHeadLinkElement("stylesheet", "css/style.css", "text/css");
+        //Generator.getHTML().headElem.css1 = Generator.createHeadLinkElement("stylesheet", "css/style.css", "text/css");
+        // head less
+        //LESS important: when using with chrome must add to your shortcut: -allow-file-access-from-files
+        //Best CSS to LESS generator: http://leafo.net/lessphp/lessify/
+        Generator.getHTML().headElem.less1 = Generator.createHeadLinkElement("stylesheet/less", "less/styleLess.less", "text/css");
 
         // head scripts
         Generator.getHTML().headElem.modernizer = Generator.createHeadScriptElement("js/libs/modernizr-2.6.2.min.js");
 
         //BODY
 
-
-     /*   <header>
-            <table>
-                <tr><td>
-                    <img src="img/logo_FETE_en.png" style="padding: 10px;" alt="Application logo" /></td>
-                    <td><a href="#" onclick="Msg.loadLocale(0);"><img src="img/pol_flag.gif" style="padding: 10px;" alt="Polish flag" /></a><br />
-                        <a href="#" onclick="Msg.loadLocale(1);"><img src="img/eng_flag.gif" style="padding: 10px;" alt="English flag" /></a><br />
-                        <a href="#" onclick="Msg.loadLocale(2);"><img src="img/ger_flag.gif" style="padding: 10px;" alt="German flag" /></a><br />
-                        <a href="#" onclick="Msg.loadLocale(3);"><img src="img/esp_flag.gif" style="padding: 10px;" alt="Spanish flag" /></a><br />
-                        <a href="#" onclick="Msg.loadLocale(4);"><img src="img/fr_flag.gif" style="padding: 10px;" alt="French flag" /></a><br />
-                        <a href="#" onclick="Msg.loadLocale(5);"><img src="img/rus_flag.gif" style="padding: 10px;" alt="Russian flag" /></a><br />
-                    </td></tr></table>
-        </header>*/
 
         Generator.getHTML().bodyElem.header = Generator.createBodyHeaderElement();
         Generator.getHTML().sub.tableInHeader = Generator.createBodyTableElement(1, 2);
@@ -202,24 +193,6 @@ var _Generator = function() {
         Generator.getHTML().sub.flagsImages[5] = Generator.createBodyImageElement("img/rus_flag.gif", "padding: 10px;", "Russian flag");
 
 
-
-        /*Generator.getHTML().sub.tableInHeader.cols[1].appendChild(Generator.getHTML().sub.linkLocale0);
-        Generator.getHTML().sub.tableInHeader.cols[1].appendChild(Generator.getHTML().sub.linkLocale0);
-        Generator.getHTML().sub.tableInHeader.cols[1].appendChild(Generator.getHTML().sub.linkLocale0);
-        Generator.getHTML().sub.tableInHeader.cols[1].appendChild(Generator.getHTML().sub.linkLocale0);
-        Generator.getHTML().sub.tableInHeader.cols[1].appendChild(Generator.getHTML().sub.linkLocale0);
-        Generator.getHTML().sub.tableInHeader.cols[1].appendChild(Generator.getHTML().sub.linkLocale0);*/
-
-
-
-
-        /*Generator.getHTML().sub.linkLocale[0] = Generator.createBodyLinkElement("#");
-        Generator.getHTML().sub.linkLocale[1] = Generator.createBodyLinkElement("#");
-        Generator.getHTML().sub.linkLocale[2] = Generator.createBodyLinkElement("#");
-        Generator.getHTML().sub.linkLocale[3] = Generator.createBodyLinkElement("#");
-        Generator.getHTML().sub.linkLocale[4] = Generator.createBodyLinkElement("#");
-        Generator.getHTML().sub.linkLocale[5] = Generator.createBodyLinkElement("#");*/
-
         Generator.getHTML().sub.linkLocale = [];
         for (var m = 0; m < 6; m++){
             Generator.getHTML().sub.linkLocale[m] = Generator.createBodyLinkElement("#");
@@ -229,25 +202,6 @@ var _Generator = function() {
             Generator.getHTML().sub.tableInHeader.rows[0].childNodes[1].appendChild(Generator.getHTML().sub.linkLocale[m]);
             Generator.getHTML().sub.tableInHeader.rows[0].childNodes[1].appendChild(document.createElement('br'));
         }
-
-        /*Generator.getHTML().sub.linkLocale0.setAttribute("onclick", "Msg.loadLocale(0);");
-        Generator.getHTML().sub.linkLocale1.setAttribute("onclick", "Msg.loadLocale(1);");
-        Generator.getHTML().sub.linkLocale2.setAttribute("onclick", "Msg.loadLocale(2);");
-        Generator.getHTML().sub.linkLocale3.setAttribute("onclick", "Msg.loadLocale(3);");
-        Generator.getHTML().sub.linkLocale4.setAttribute("onclick", "Msg.loadLocale(4);");
-        Generator.getHTML().sub.linkLocale5.setAttribute("onclick", "Msg.loadLocale(5);");
-        Generator.getHTML().sub.linkLocale6.setAttribute("onclick", "Msg.loadLocale(6);");*/
-
-        /*<td>
-            <img src="img/logo_FETE_en.png" style="padding: 10px;" alt="Application logo" /></td>
-            <td><a href="#" onclick="Msg.loadLocale(0);"><img src="img/pol_flag.gif" style="padding: 10px;" alt="Polish flag" /></a><br />
-            <a href="#" onclick="Msg.loadLocale(1);"><img src="img/eng_flag.gif" style="padding: 10px;" alt="English flag" /></a><br />
-            <a href="#" onclick="Msg.loadLocale(2);"><img src="img/ger_flag.gif" style="padding: 10px;" alt="German flag" /></a><br />
-            <a href="#" onclick="Msg.loadLocale(3);"><img src="img/esp_flag.gif" style="padding: 10px;" alt="Spanish flag" /></a><br />
-            <a href="#" onclick="Msg.loadLocale(4);"><img src="img/fr_flag.gif" style="padding: 10px;" alt="French flag" /></a><br />
-            <a href="#" onclick="Msg.loadLocale(5);"><img src="img/rus_flag.gif" style="padding: 10px;" alt="Russian flag" /></a><br />
-        </td>*/
-
 
         // body divs and divButtons
 
@@ -289,6 +243,10 @@ var _Generator = function() {
 
 
         Generator.getHTML().bodyElem.scriptJQuery = Generator.createBodyScriptElement("js/libs/jquery-1.8.3.min.js");
+        //LESS important: when using with chrome must add to your shortcut: -allow-file-access-from-files
+        //Best CSS to LESS generator: http://leafo.net/lessphp/lessify/
+        //Less source: https://raw.github.com/cloudhead/less.js/master/dist/less-1.3.3.min.js
+        Generator.getHTML().bodyElem.scriptLess_1_3_3 = Generator.createBodyScriptElement("js/libs/less-1.3.3.min.js");
         Generator.getHTML().bodyElem.scriptPlugins = Generator.createBodyScriptElement("js/plugins.js");
         Generator.getHTML().bodyElem.scriptMsg = Generator.createBodyScriptElement("js/static/Msg.js");
         Generator.getHTML().bodyElem.scriptCodeClass = Generator.createBodyScriptElement("js/static/Code.class.js");
