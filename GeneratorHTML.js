@@ -12,7 +12,7 @@ var _Generator = function() {
     var HTML = {head: document.getElementsByTagName('head')[0], body: document.getElementsByTagName('body')[0], headElem: {}, bodyElem: {}, sub: {}};
     this.getHTML = function(){return HTML};
 
-
+    // <!--  -->
     this.createHTMLComment = function(data){
         return document.createComment(data);
     };
@@ -39,6 +39,9 @@ var _Generator = function() {
         return header;
     };
 
+    // <table><tbody><tr><td></td></tr></tbody></table>
+    // insert into cell:    cell.innerHTML="...";
+    // removing cell: row.deleteCell(0);
     this.createBodyTableElement = function(rows, cols){
         var table = document.createElement('table');
         for (var i = 0; i < rows; i++)
@@ -57,9 +60,9 @@ var _Generator = function() {
         return cells[row*col];
     };*/
 
-    // <img src="" style="" alt="" />
+    // <img src="" style="" alt="">
     this.createBodyImageElement = function(imageSrc, imageStyle, imageAlt){
-        var image = document.createElement('image');
+        var image = document.createElement('img');
         image.src = imageSrc;
         if (imageStyle !== ""){
             image.style = imageStyle;
@@ -138,7 +141,7 @@ var _Generator = function() {
     this.createLanguageTable = function() {
     };*/
 
-    // <link rel="" href="" type="" />
+    // <link rel="" href="" type="">
     this.createHeadLinkElement = function(rel, href, type) {
         var link = document.createElement('link');
         link.rel = rel;
@@ -152,9 +155,10 @@ var _Generator = function() {
         var docTitle = document.createElement('title');
         docTitle = titleText;
         return docTitle;
-    };*/
+    };       // change to document.title = "";
+    */
 
-    // <meta name="" content="" >
+    // <meta name="" content="">
     this.createHeadMetaElement = function(name, content) {
         var meta = document.createElement('meta');
         meta.name = name;
@@ -164,6 +168,8 @@ var _Generator = function() {
 
     this.generate = function() {
 
+// nice html/js tester http://jsfiddle.net/
+// nice html/js tester http://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_option_selected
 // HEAD
 //title
         document.title = "FETE: Program and learn it";
@@ -312,7 +318,7 @@ var _Generator = function() {
         Generator.getHTML().sub.selectChooseCodeAreaLanguage.appendChild(Generator.getHTML().sub.optionChooseCodeAreaLanguage2);
         Generator.getHTML().sub.selectChooseCodeAreaLanguage.appendChild(Generator.getHTML().sub.optionChooseCodeAreaLanguage3);
         Generator.getHTML().sub.selectChooseCodeAreaLanguage.appendChild(Generator.getHTML().sub.optionChooseCodeAreaLanguage4);
-        Generator.getHTML().sub.optionChooseCodeAreaLanguage1.selected = true;
+        Generator.getHTML().sub.optionChooseCodeAreaLanguage1.selected = true;  //nice HTML 5 implementation
         Generator.getHTML().bodyElem.divCodeAreaLanguageChoice.appendChild(Generator.getHTML().sub.selectChooseCodeAreaLanguage);
         Generator.getHTML().sub.selectChooseCodeAreaLanguage.setAttribute("onchange", "UI.chooseCodeLanguage(this.options[selectedIndex].text);");
 
@@ -321,7 +327,7 @@ var _Generator = function() {
         Generator.getHTML().sub.selectChooseExecutionAreaLanguage.appendChild(Generator.getHTML().sub.optionChooseExecutionAreaLanguage2);
         Generator.getHTML().sub.selectChooseExecutionAreaLanguage.appendChild(Generator.getHTML().sub.optionChooseExecutionAreaLanguage3);
         Generator.getHTML().sub.selectChooseExecutionAreaLanguage.appendChild(Generator.getHTML().sub.optionChooseExecutionAreaLanguage4);
-        Generator.getHTML().sub.optionChooseExecutionAreaLanguage1.selected = true;
+        Generator.getHTML().sub.optionChooseExecutionAreaLanguage1.selected = true;  //nice HTML 5 implementation
         Generator.getHTML().bodyElem.divExecutionAreaLanguageChoice.appendChild(Generator.getHTML().sub.selectChooseExecutionAreaLanguage);
         Generator.getHTML().sub.selectChooseExecutionAreaLanguage.setAttribute("onchange", "UI.chooseExecutionLanguage(this.options[selectedIndex].text);");
 
