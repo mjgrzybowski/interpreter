@@ -12,6 +12,11 @@ var _Generator = function() {
     var HTML = {head: document.getElementsByTagName('head')[0], body: document.getElementsByTagName('body')[0], headElem: {}, bodyElem: {}, sub: {}};
     this.getHTML = function(){return HTML};
 
+
+    this.createHTMLComment = function(data){
+        return document.createComment(data);
+    };
+
     // <script src="" type="text/javascript"></script>
     this.createBodyScriptElement = function(src) {
         var script = document.createElement('script');
@@ -156,29 +161,44 @@ var _Generator = function() {
     };
 
     this.generate = function() {
+
+// HEAD
+//title
         document.title = "FETE: Program and learn it";
-        // HEAD
         // favicon
+        Generator.getHTML().headElem.faviconComment = Generator.createHTMLComment("http://www.rw-designer.com/online_icon_maker.php");
         Generator.getHTML().headElem.favicon = Generator.createHeadLinkElement("shortcut icon", "img/favicon.ico", "image/x-icon");
-        //title
+
+        Generator.getHTML().headElem.htaccessComment = Generator.createHTMLComment("Use the .htaccess and remove these lines to avoid edge case issues.\nMore info: h5bp.com/i/378);");
+        Generator.getHTML().headElem.ifIEComment = Generator.createHTMLComment("\[if IE]><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"><[if IE]");
+        Generator.getHTML().headElem.ifChromeComment = Generator.createHTMLComment("\[if Chrome]><meta http-equiv=\"X-UA-Compatible\" content=\"chrome=1\"><[if Chrome]");
+
+
         //Generator.HTML.head.title = Generator.createTitleElement("FETE: Program and learn it");
         // TODO: Tytuł był wyszukiwany po id, trzeba to zmienic id="title" FETE: Program and learn it
         // head meta
         Generator.getHTML().headElem.metaDesc1 = Generator.createHeadMetaElement("description", "Application which anyone can use to learn programming languages.");
+        Generator.getHTML().headElem.viewportComment = Generator.createHTMLComment("Mobile viewport optimized: h5bp.com/viewport");
         Generator.getHTML().headElem.metaDesc2 = Generator.createHeadMetaElement("viewport", "width=device-width");
+        Generator.getHTML().headElem.rootDirComment = Generator.createHTMLComment("Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons");
 
-        // head css
+
+// head css
         //Generator.getHTML().headElem.css1 = Generator.createHeadLinkElement("stylesheet", "css/style.css", "text/css");
         // head less
         //LESS important: when using with chrome must add to your shortcut: -allow-file-access-from-files
         //Best CSS to LESS generator: http://leafo.net/lessphp/lessify/
         Generator.getHTML().headElem.less1 = Generator.createHeadLinkElement("stylesheet/less", "less/styleLess.less", "text/css");
 
-        // head scripts
+        Generator.getHTML().headElem.rootDirComment = Generator.createHTMLComment("\More ideas for your <head> here: h5bp.com/d/head-Tips");
+
+// head scripts
+        Generator.getHTML().headElem.modernizrComment = Generator.createHTMLComment("\All JavaScript at the bottom, except this Modernizr build.\nModernizr enables HTML5 elements & feature detects for optimal performance.\nCreate your own custom Modernizr build: www.modernizr.com/download/");
         Generator.getHTML().headElem.modernizer = Generator.createHeadScriptElement("js/libs/modernizr-2.6.2.min.js");
 
-        //BODY
-
+//BODY
+        Generator.getHTML().bodyElem.promptComment = Generator.createHTMLComment("\Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.\nchromium.org/developers/how-tos/chrome-frame-getting-started");
+        Generator.getHTML().bodyElem.chromeframeComment = Generator.createHTMLComment("\[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href=\"http://browsehappy.com/\">Upgrade to a different browser</a> or <a href=\"http://www.google.com/chromeframe/?redirect=true\">install Google Chrome Frame</a> to experience this site.</p><![endif]");
 
         Generator.getHTML().bodyElem.header = Generator.createBodyHeaderElement();
         Generator.getHTML().sub.tableInHeader = Generator.createBodyTableElement(1, 2);
@@ -203,7 +223,7 @@ var _Generator = function() {
             Generator.getHTML().sub.tableInHeader.rows[0].childNodes[1].appendChild(document.createElement('br'));
         }
 
-        // body divs and divButtons
+// body divs and divButtons
 
         Generator.getHTML().bodyElem.divBtnStep = Generator.createBodyDivElement("step", "btn", "Zrób krok");
         Generator.getHTML().bodyElem.divBtnFlush = Generator.createBodyDivElement("flush", "btn", "Zacznij od nowa");
@@ -241,7 +261,7 @@ var _Generator = function() {
         Generator.getHTML().sub.labelForMemoryContainer = Generator.createBodyLabelElement("labelForExecutionArea", "execArea", "Exec area");
         Generator.getHTML().sub.textareaExecArea = Generator.createBodyTextAreaElement("execArea");
 
-
+//SCRIPTS
         Generator.getHTML().bodyElem.scriptJQuery = Generator.createBodyScriptElement("js/libs/jquery-1.8.3.min.js");
         //LESS important: when using with chrome must add to your shortcut: -allow-file-access-from-files
         //Best CSS to LESS generator: http://leafo.net/lessphp/lessify/
