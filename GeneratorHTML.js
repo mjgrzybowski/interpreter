@@ -57,6 +57,7 @@ var _Generator = function() {
         return cells[row*col];
     };*/
 
+    // <img src="" style="" alt="" />
     this.createBodyImageElement = function(imageSrc, imageStyle, imageAlt){
         var image = document.createElement('image');
         image.src = imageSrc;
@@ -67,6 +68,7 @@ var _Generator = function() {
         return image;
     };
 
+    // <a href=""></a>
     this.createBodyLinkElement = function(linkHref){
         var aLink = document.createElement("a");
         aLink.href = linkHref;
