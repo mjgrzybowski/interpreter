@@ -7,7 +7,7 @@
  */
 
 // obiekt walidatora kodu
-var _AreaValidator = function(){
+var _Parser = function(){
     this.language = null; // jezyk do walidacji
 
     //this.getLanguage = function() { return this.language; }; // pobieranie jezyka
@@ -94,6 +94,6 @@ var _AreaValidator = function(){
 
 };
 
-var CodeAreaValidator = new _AreaValidator();
-//var ExecutionAreaValidator = new _AreaValidator();
+var Parser = new _Parser();
+//var ExecutionAreaValidator = new _Parser();
 

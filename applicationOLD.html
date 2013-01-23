@@ -83,7 +83,7 @@
         <span id="timing">Czas: 0.000 s</span>
         <div id="code-container">
             <label id="labelForCodeArea" for="codeArea">Code</label>
-            <textarea id="codeArea" onchange="CodeAreaValidator.areaValidate('codeArea');"></textarea>
+            <textarea id="codeArea" onchange="Parser.areaValidate('codeArea');"></textarea>
             <div class="lineMarker" id="execMarker"></div>
             <div id="lineNumbers" class="linesNumbers">1</div>
         </div>
@@ -110,7 +110,7 @@
         <script src="js/static/Operator.class.js"></script>
         <script src="js/static/TreeDefinition.class.js"></script>
         <!-- dynamic -->
-        <script src="js/dynamic/AreaValidator.class.js"></script>
+        <script src="js/dynamic/Parser.class.js"></script>
         <script src="js/dynamic/Compiler.class.js"></script>
         <script src="js/dynamic/Interpreter.class.js"></script>
         <script src="js/dynamic/Lexer.class.js"></script>

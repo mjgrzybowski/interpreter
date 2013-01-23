@@ -14,8 +14,8 @@
 * @param preprocessor
 */
 
-function Interpreter( preprocessor ) {
+var _Interpreter = function( preprocessor ) {
 
 
 
-}
+};

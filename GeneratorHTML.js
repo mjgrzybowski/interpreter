@@ -10,7 +10,7 @@ var _Generator = function() {
 
     // Obiekt zawierający wszystkie elementy 
     var HTML = {head: document.getElementsByTagName('head')[0], body: document.getElementsByTagName('body')[0], headElem: {}, bodyElem: {}, sub: {}};
-    this.getHTML = function(){return HTML};
+    this.getHTML = function(){return HTML;};
 
     // <!--  -->
     this.createHTMLComment = function(data){
@@ -261,6 +261,7 @@ var _Generator = function() {
         Generator.getHTML().bodyElem.divCodeContainer = Generator.createBodyDivElement("code-container", "", "");
         Generator.getHTML().sub.labelForCodeContainer = Generator.createBodyLabelElement("labelForCodeArea", "codeArea", "Code");
         Generator.getHTML().sub.textareaCodeArea = Generator.createBodyTextAreaElement("codeArea");
+        Generator.getHTML().sub.textareaCodeArea.setAttribute("onchange", "Parser.areaValidate('codeArea');");
         Generator.getHTML().sub.divLineMarker = Generator.createBodyDivElement("execMarker", "lineMarker", "");
         Generator.getHTML().sub.divLineNumbers = Generator.createBodyDivElement("lineNumbers", "linesNumbers", "1");
 
@@ -268,6 +269,7 @@ var _Generator = function() {
         Generator.getHTML().bodyElem.divMemoryContainer = Generator.createBodyDivElement("memory-container", "", "");
         Generator.getHTML().sub.labelForMemoryContainer = Generator.createBodyLabelElement("labelForExecutionArea", "execArea", "Exec area");
         Generator.getHTML().sub.textareaExecArea = Generator.createBodyTextAreaElement("execArea");
+        Generator.getHTML().sub.textareaExecArea.setAttribute("onchange", "Parser.areaValidate('execArea');");
 
 //SCRIPTS
         Generator.getHTML().bodyElem.scriptJQuery = Generator.createBodyScriptElement("js/libs/jquery-1.8.3.min.js");
@@ -283,7 +285,8 @@ var _Generator = function() {
         Generator.getHTML().bodyElem.scriptOperatorClass = Generator.createBodyScriptElement("js/static/Operator.class.js");
         Generator.getHTML().bodyElem.scriptTreeDefinitionClass = Generator.createBodyScriptElement("js/static/TreeDefinition.class.js");
 
-        Generator.getHTML().bodyElem.scriptAreaValidator = Generator.createBodyScriptElement("js/dynamic/AreaValidator.class.js");
+        Generator.getHTML().bodyElem.scriptParser = Generator.createBodyScriptElement("js/dynamic/Parser.class.js");
+        Generator.getHTML().bodyElem.scriptUI = Generator.createBodyScriptElement("js/dynamic/UI.js");
         Generator.getHTML().bodyElem.scriptCompilerClass = Generator.createBodyScriptElement("js/dynamic/Compiler.class.js");
         Generator.getHTML().bodyElem.scriptInterpreterClass = Generator.createBodyScriptElement("js/dynamic/Interpreter.class.js");
         Generator.getHTML().bodyElem.scriptLexerClass = Generator.createBodyScriptElement("js/dynamic/Lexer.class.js");
@@ -295,7 +298,7 @@ var _Generator = function() {
         Generator.getHTML().bodyElem.scriptInterpretation = Generator.createBodyScriptElement("js/dynamic/interpretation.js");
         Generator.getHTML().bodyElem.scriptLexing = Generator.createBodyScriptElement("js/dynamic/lexing.js");
         Generator.getHTML().bodyElem.scriptPreprocessing = Generator.createBodyScriptElement("js/dynamic/preprocessing.js");
-        Generator.getHTML().bodyElem.scriptUI = Generator.createBodyScriptElement("js/dynamic/UI.js");
+      
 
 
         Generator.appendToHTML();
@@ -327,7 +330,7 @@ var _Generator = function() {
         Generator.getHTML().sub.selectChooseExecutionAreaLanguage.appendChild(Generator.getHTML().sub.optionChooseExecutionAreaLanguage2);
         Generator.getHTML().sub.selectChooseExecutionAreaLanguage.appendChild(Generator.getHTML().sub.optionChooseExecutionAreaLanguage3);
         Generator.getHTML().sub.selectChooseExecutionAreaLanguage.appendChild(Generator.getHTML().sub.optionChooseExecutionAreaLanguage4);
-        Generator.getHTML().sub.optionChooseExecutionAreaLanguage1.selected = true;  //nice HTML 5 implementation
+        Generator.getHTML().sub.optionChooseExecutionAreaLanguage2.selected = true;  //nice HTML 5 implementation
         Generator.getHTML().bodyElem.divExecutionAreaLanguageChoice.appendChild(Generator.getHTML().sub.selectChooseExecutionAreaLanguage);
         Generator.getHTML().sub.selectChooseExecutionAreaLanguage.setAttribute("onchange", "UI.chooseExecutionLanguage(this.options[selectedIndex].text);");
 
@@ -356,7 +359,7 @@ function addListener(obj, eventName, listener) {
     } else {
         obj.attachEvent("on" + eventName, listener);
     }
-}
+};
 if (!window.addEventListener) {
     document.write = "DOMContentLoaded not supported";
 }
