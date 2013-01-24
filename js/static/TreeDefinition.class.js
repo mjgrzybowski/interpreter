@@ -14,7 +14,7 @@
 var _TreeDefinition = function() {
 
     var treePseudo = ["\n",":",","]; 
-    var treeJS = ["{","}","\n"];
+    var treeJS = [";"," = ","{","}"];
     var treeCpp = ["\n",":",","];
     var treeJava = ["\n",":",","];
 

@@ -33,13 +33,33 @@ var _Preprocessor = function(lexer) {
         return codePreprocessed;
     };
 
+    // new _Preprocessor().preprocessingJS()
     this.preprocessingJS = function() {
+        for (var n = 0; n < codeLines.length; n++) {
+            if (Lexer.splitStringToArrayWithTree(codeLines[n], new _TreeDefinition().getTreeJS())[0] !== "") {
+                if (Lexer.splitStringToArrayWithTree(codeLines[n], new _TreeDefinition().getTreeJS())[0].substring(0, 3) === "var") {
+                    codePreprocessed[n] = [n, ["variable"], Lexer.splitStringToArrayWithTree(codeLines[n], new _TreeDefinition().getTreeJS())];
+                } else
+                {
+                    codePreprocessed[n] = [n, [0], Lexer.splitStringToArrayWithTree(codeLines[n], new _TreeDefinition().getTreeJS())];
+                }
+            }
+//            else if (Lexer.splitStringToArrayWithTree(codeLines[n], new _TreeDefinition().getTreeJS()).length === 2) {
+//                codePreprocessed[n] = [n, ["function", "argument"], Lexer.splitStringToArrayWithTree(codeLines[n], new _TreeDefinition().getTreeJS())];
+//            }
+//            else if (Lexer.splitStringToArrayWithTree(codeLines[n], new _TreeDefinition().getTreeJS()).length === 3) {
+//                codePreprocessed[n] = [n, ["function", "name", "argument"], Lexer.splitStringToArrayWithTree(codeLines[n], new _TreeDefinition().getTreeJS())];
+//            }
+        }
+        return codePreprocessed;
     };
 
     this.preprocessingCpp = function() {
+        return codePreprocessed;
     };
 
     this.preprocessingJava = function() {
+        return codePreprocessed;
     };
 
     this.getTreeForPreprocessor = function() {

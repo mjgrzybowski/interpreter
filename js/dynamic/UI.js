@@ -13,8 +13,8 @@ var _UI = function() {
     var sampleCode2 = "WW: witaj swiecie\nSS: a,3\nSS: b,4\nZWJ: a\nZMJ: b\nEND:";
     var sampleCode3 = "SS: a,3\nSS: b,4\nZWJ: a\nZMJ: b\nEND:";
     var sampleCode4 = "SS: a,3\nEND:";
-    var sampleCodeJS3 = "var a = 1;\nvar b = 2;\nvar wynik;\nwynik = a + b;";
-    var codeAreaCODE = sampleCode4;
+    var sampleCode5 = "var a = 1;\nvar b = 2;\nvar wynik;\nwynik = a + b;";
+    var codeAreaCODE = sampleCode5;
     var lastExecutedLine = 0;
     var codeLanguage = "pseudo";
     var executionLanguage = "javascript";

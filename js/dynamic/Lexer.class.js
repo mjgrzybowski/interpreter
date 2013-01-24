@@ -18,7 +18,7 @@ var _Lexer = function() {
 
     this.getCodeLines = function() {
         this.lexing();
-        return lines;
+        return this.cleanArray(lines);
     };
 
     this.getLinesFromCode = function(string, separatorsTable) {
@@ -26,6 +26,7 @@ var _Lexer = function() {
     };
 
     // Język pobierany bezpośrednio z UI
+    // new _Lexer().lexing();
     this.lexing = function() {
         if (UI.getCodeLanguage() === "pseudo") {
             this.runLexerForPseudoLanguage();
@@ -67,21 +68,25 @@ var _Lexer = function() {
         if (string === "") {
             return tempArray;
         }
-        string = this.removeSpaces(string);
+        if (UI.getCodeLanguage() === "pseudo")
+            string = this.removeSpaces(string);
+        if (UI.getCodeLanguage() === "javascript")
+            string = this.removeEnters(string);
+
         // String remove spaces
         var tempArray = string.split(separatorsTable[0]);
         var subArray = [];
         for (var i = 1; i < separatorsTable.length; i++) {
             for (var n in tempArray) {
-                if (tempArray[n] !== "END:")
+//                if (tempArray[n] !== "END:")
                     subArray = subArray.concat(tempArray[n].split(separatorsTable[i]));
-                else {
-                    subArray = subArray.concat("END");
-                }
+//                else {
+//                    subArray = subArray.concat("END");
+//                }
 //                console.log(subArray);
 //                console.log("========");
             }
-            tempArray = subArray;
+            tempArray = this.cleanArray(subArray);
             subArray = [];
             //}
         }
@@ -93,9 +98,24 @@ var _Lexer = function() {
         return s.replace(/\s+/g, '');
     };
 
+    this.cleanArray = function(actual) {
+        var newArray = new Array();
+        for (var i = 0; i < actual.length; i++) {
+            if (actual[i]) {
+                newArray.push(actual[i]);
+            }
+        }
+        return newArray;
+    };
+
 //new _Lexer().removeSpaces(UI.getCodeAreaCODE());
     this.removeSpaces = function(s) {
         return s.replace(/\u0020+/g, '');
+    };
+
+//new _Lexer().removeEnters(UI.getCodeAreaCODE());
+    this.removeEnters = function(s) {
+        return s.replace(/\n+/g, '');
     };
 };
 
