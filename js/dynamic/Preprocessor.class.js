@@ -12,25 +12,46 @@
  */
 // obiekt, ktory pobiera informacje z lexera i przekazuje do interpretera
 var _Preprocessor = function(lexer) {
-    
-//    try{
-//        if ( lexer.getLexerTree() )
-//            this.treeForPreprocessor = lexer.getLexerTree();
-//        else
-//            this.treeForPreprocessor = null;
-//        if ( lexer.getLexerLanguage() )
-//            this.preprocessorLanguage = lexer.getLexerLanguage();
-//        else
-//            this.preprocessorLanguage = null;
-//    }
-//    catch( ex ) {
-//        var err = "There was an error on this page.\n\n";
-//        err += "Error description: " + ex.message + "\n\n";
-//        err += "Click OK to continue.\n\n";
-//        alert( err );
-//    }
-    this.getTreeForPreprocessor = function() {return this.treeForPreprocessor; };
-    this.setTreeForPreprocessor = function( pTree ) { this.treeForPreprocessor = pTree; };
-    this.getPreprocessorLanguage = function() { return this.preprocessorLanguage; };
-    this.setPreprocessorLanguage = function( pLanguage ) { this.treeForPreprocessor = pLanguage; };
+
+    var Lexer = new _Lexer();
+    var codeLines = Lexer.getCodeLines();
+    var codePreprocessed = [[[]]];
+
+    // new _Preprocessor().preprocessingPseudo()
+    this.preprocessingPseudo = function() {
+        for (var n = 0; n < codeLines.length; n++) {
+            if (Lexer.splitStringToArrayWithTree(codeLines[n], new _TreeDefinition().getTreePseudo()).length === 1) {
+                codePreprocessed[n] = [n, ["function"], Lexer.splitStringToArrayWithTree(codeLines[n], new _TreeDefinition().getTreePseudo())];
+            }
+            else if (Lexer.splitStringToArrayWithTree(codeLines[n], new _TreeDefinition().getTreePseudo()).length === 2) {
+                codePreprocessed[n] = [n, ["function", "argument"], Lexer.splitStringToArrayWithTree(codeLines[n], new _TreeDefinition().getTreePseudo())];
+            }
+            else if (Lexer.splitStringToArrayWithTree(codeLines[n], new _TreeDefinition().getTreePseudo()).length === 3) {
+                codePreprocessed[n] = [n, ["function", "name", "argument"], Lexer.splitStringToArrayWithTree(codeLines[n], new _TreeDefinition().getTreePseudo())];
+            }
+        }
+        return codePreprocessed;
+    };
+
+    this.preprocessingJS = function() {
+    };
+
+    this.preprocessingCpp = function() {
+    };
+
+    this.preprocessingJava = function() {
+    };
+
+    this.getTreeForPreprocessor = function() {
+        return this.treeForPreprocessor;
+    };
+    this.setTreeForPreprocessor = function(pTree) {
+        this.treeForPreprocessor = pTree;
+    };
+    this.getPreprocessorLanguage = function() {
+        return this.preprocessorLanguage;
+    };
+    this.setPreprocessorLanguage = function(pLanguage) {
+        this.treeForPreprocessor = pLanguage;
+    };
 };

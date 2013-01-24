@@ -14,19 +14,19 @@ var _VirtualMachine = function () {
 
     //var memory = [];
 
-    this.run = function() {
-        VM1.execute(new _Compiler(new _Interpreter(new _Preprocessor(new _Lexer()))).compile());
-        var Lexer = new _Lexer();
-        Lexer.lexing();
-        console.log("VM dziala, kod uruchomiony");
-        console.log("Kod podzielony na linie: " + Lexer.getCodeLines());
-        console.log("Kod powstaly w wyniku analizy leksykalnej: " + Lexer.lexing());
-    };
+//    this.run = function() {
+//        VM1.execute(new _Compiler(new _Interpreter(new _Preprocessor(new _Lexer()))).compile());
+//        var Lexer = new _Lexer();
+//        Lexer.lexing();
+//        console.log("VM dziala, kod uruchomiony");
+//        console.log("Kod podzielony na linie: " + Lexer.getCodeLines());
+//        console.log("Kod powstaly w wyniku analizy leksykalnej: " + Lexer.lexing());
+//    };
 
     this.execute = function(codeForExecution){
     };
 };
 
 
-var VM1 = new _VirtualMachine();
-VM1.run();
+//var VM1 = new _VirtualMachine();
+//VM1.run();

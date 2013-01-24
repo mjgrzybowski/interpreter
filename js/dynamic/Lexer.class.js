@@ -108,6 +108,7 @@ var _Lexer = function() {
  * Date: 27.11.12
  * Time: 15:22
  * To change this template use File | Settings | File Templates.
+ * Edited and prepared by Marcin J. Grzybowski
  */
 
 // reads code with proper lexerTree and makes an array with order:
@@ -348,7 +349,6 @@ var _Lexer2 = function(language) {
 // next line...
 
 // klasa tworzaca obiekty Lekser, ktore "rozbieraja kod na czesci"
-//TODO: implementacja lexowania
 
 
 
