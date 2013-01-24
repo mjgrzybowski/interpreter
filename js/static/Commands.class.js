@@ -8,84 +8,102 @@
 
 // komendy danego jezyka
 var _Commands = function() {
-    this.listOfCommands = null; // lista komend jezyka (object of Language)
+    
+    // pobieranie listy komend: new _Commands().getPseudoCommands()
+    this.getPseudoCommands = function() {
+        return PseudoCommands;
+    };
 
-    this.getListOfCommands = function() { return this.listOfCommands; }; // pobieranie listy komend
-    this.setListOfCommands = function( change ) { this.listOfCommands = change; };
-};
+    this.getJSCommands = function() {
+        return JavaScriptCommands;
+    };
 
-var PseudoCommands = new _Commands();
-var JavaScriptCommands = new _Commands();
-var CppCommands = new _Commands();
-var JavaCommands = new _Commands();
+    this.getCppCommands = function() {
+        return CppCommands;
+    };
+
+    this.getJavaCommands = function() {
+        return JavaCommands;
+    };
 
 
-PseudoCommands.setListOfCommands({
-    "WW":{
-        numberOfPars: 1,
-        fnc:function( m, pars ){
-            console.log( pars );
-        }
-    },
-    "SS":{
-        numberOfPars: 2,
-        fnc:function( m, pars ){
-            m[ pars[ 0 ] ] = Number( pars[ 1 ] );
-        }
-    },
-    "WZS":{
-        numberOfPars: 2
-    },
-    "SZ":{
-        numberOfPars: 2,
-        fnc: function( m, pars ){
-            m[ pars[ 1 ] ] = Number( m[ pars[ 0 ] ] );
-        }
-    },
-    "ZWJ":{
-        numberOfPars: 1,
-        fnc:function( m, pars ){
-            m[ pars[ 0 ] ]++;
-        }
-    },
-    "ZMJ":{
-        numberOfPars:1,
-        fnc:function( m, pars ){
-            m[ pars[0 ] ]--;
-        }
-    },
-    "IDL":{
-        numberOfPars: 2,
-        fnc:function( m, pars ){
-            if ( m[ pars[ 0 ] ] !== 0 )
-            {
-                lastExecutedLine = pars[ 1 ] - 1;
+
+    var PseudoCommands = {
+        "WW": {
+            numberOfPars: 1,
+            fnc: function(m, pars) {
+                console.log(pars);
+            }
+        },
+        "SS": {
+            numberOfPars: 2,
+            fnc: function(m, pars) {
+                m[ pars[ 0 ] ] = Number(pars[ 1 ]);
+            }
+        },
+        "WZS": {
+            numberOfPars: 2
+        },
+        "SZ": {
+            numberOfPars: 2,
+            fnc: function(m, pars) {
+                m[ pars[ 1 ] ] = Number(m[ pars[ 0 ] ]);
+            }
+        },
+        "ZWJ": {
+            numberOfPars: 1,
+            fnc: function(m, pars) {
+                m[ pars[ 0 ] ]++;
+            }
+        },
+        "ZMJ": {
+            numberOfPars: 1,
+            fnc: function(m, pars) {
+                m[ pars[0 ] ]--;
+            }
+        },
+        "IDL": {
+            numberOfPars: 2,
+            fnc: function(m, pars) {
+                if (m[ pars[ 0 ] ] !== 0)
+                {
+                    lastExecutedLine = pars[ 1 ] - 1;
+                }
+            }
+        },
+        "END": {
+            numberOfPars: 0,
+            fnc: function(m, pars) {
+                console.log('koniec' + m + pars);
+                flush();
             }
         }
-    },
-    "END":{
-        numberOfPars: 0,
-        fnc:function( m, pars ){
-            console.log( 'koniec' + m + pars );
-            flush();
+    };
+
+    var JavaScriptCommands = {
+        "var": {//var nazwa = [argument];
+            numberOfPars: 2,
+            fnc: function(m, pars) {
+                m[ pars[ 0 ] ] = Number(pars[ 1 ]);
+            }
         }
-    }
-});
+    };
 
-JavaScriptCommands.setListOfCommands({
-    "var":{ //var nazwa = [argument];
-        numberOfPars: 2,
-        fnc:function( m, pars ){
-            m[ pars[ 0 ] ] = Number( pars[ 1 ]);
+    var CppCommands = {
+        "int": {//var nazwa = [argument];
+            numberOfPars: 2,
+            fnc: function(m, pars) {
+                m[ pars[ 0 ] ] = Number(pars[ 1 ]);
+            }
         }
-    }
+    };
 
-});
-
-CppCommands.setListOfCommands({
-
-});
-
-JavaCommands.setListOfCommands({
-
-});
+    var JavaCommands = {
+        "int": {//var nazwa = [argument];
+            numberOfPars: 2,
+            fnc: function(m, pars) {
+                m[ pars[ 0 ] ] = Number(pars[ 1 ]);
+            }
+        }
+    };
+};
