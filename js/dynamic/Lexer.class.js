@@ -82,7 +82,7 @@ var _Lexer = function() {
         var subArray = [];
         for (var i = 1; i < separatorsTable.length; i++) {
             for (var n in tempArray) {
-                    subArray = subArray.concat(tempArray[n].split(separatorsTable[i]));
+                subArray = subArray.concat(tempArray[n].split(separatorsTable[i]));
 //                console.log(subArray);
 //                console.log("========");
             }
@@ -116,11 +116,23 @@ var _Lexer = function() {
     this.removeEnters = function(s) {
         return s.replace(/\n+/g, '');
     };
+
+    this.oldLexing = function(codeParameter, treeParameter) {
+
+        var code = codeParameter;
+        var tree = treeParameter.getTree();
+        var lexingResult = [];
+        var branch, i;
+        for (branch in tree)
+        {
+            i = branch;
+            lexingResult = code.split(tree[ i ]);
+        }
+        //console.log(tree);
+        return lexingResult;
+    };
+
 };
-
-
-
-
 /**
  * Created with JetBrains WebStorm.
  * User: Kamil

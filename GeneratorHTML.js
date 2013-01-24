@@ -299,7 +299,6 @@ var _Generator = function() {
         Generator.getHTML().bodyElem.scriptPreprocessorClass = Generator.createBodyScriptElement("js/dynamic/Preprocessor.class.js");
         Generator.getHTML().bodyElem.scriptTranslatorClass = Generator.createBodyScriptElement("js/dynamic/Translator.class.js");
         Generator.getHTML().bodyElem.scriptVirtualMachine = Generator.createBodyScriptElement("js/dynamic/VirtualMachine.js");
-        Generator.getHTML().bodyElem.scriptInterpretation = Generator.createBodyScriptElement("js/dynamic/interpretation.js");
         Generator.getHTML().bodyElem.scriptLexing = Generator.createBodyScriptElement("js/dynamic/lexing.js");
         Generator.getHTML().bodyElem.scriptPreprocessing = Generator.createBodyScriptElement("js/dynamic/preprocessing.js");
 
