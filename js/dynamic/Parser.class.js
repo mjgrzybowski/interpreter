@@ -8,17 +8,17 @@
 
 // obiekt walidatora kodu
 var _Parser = function(){
-    this.language = null; // jezyk do walidacji
+    var language = null; // jezyk do walidacji
 
     //this.getLanguage = function() { return this.language; }; // pobieranie jezyka
-    this.setLanguage = function( change ) { this.language = change; }; // ustawianie jezyka
+    this.setLanguage = function( change ) { language = change; }; // ustawianie jezyka
 
     // Funkcja uruchamia sie automatycznie, gdy zmieni sie kod w nameArea
     // funkcja, która na bierzaco sprawdza, czy kod wpisywany jest poprawnie
     this.areaValidate = function( nameArea ) {
         UI.cleanCode();
-        this.myNewCode = document.getElementById( nameArea ).value;
-        console.log( this.parseNewCode( this.myNewCode, this.language ) );
+        var myNewCode = document.getElementById( nameArea ).value;
+        console.log( this.parseNewCode( myNewCode, language ) );
 
         //console.log("ok");
     };

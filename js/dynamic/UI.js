@@ -29,6 +29,10 @@ var _UI = function() {
     this.getCodeLanguage = function() {
         return codeLanguage;
     };
+    
+    this.getExecLanguage = function() {
+        return executionLanguage;
+    };
 
     this.getCodeAreaCODE = function() {
         return codeAreaCODE;
@@ -72,34 +76,6 @@ var _UI = function() {
         //executeLine( lastExecutedLine );
     };
 
-    /*
-     
-     executeLine = function( n ) {
-     var currentCode = document.getElementById( 'codeArea' ).value;
-     //var lnM1, ln;
-     currentCode = currentCode.split( '\n' );
-     
-     var willDo = ParseLine( currentCode[ n-1 ] );
-     if( typeof( willDo ) != "string" )
-     {
-     exec( willDo, memory );
-     console.log( memory );
-     }
-     else
-     {
-     if( willDo != "blank" )
-     alert( 'blad w linii nr: ' + willDo );
-     }
-     
-     };
-     
-     exec = function( what, mem ){
-     
-     what.command.fnc( mem, what.pars );
-     
-     };
-     */
-
     this.flush = function() {
         memory = [];
         lastExecutedLine = 0;
@@ -138,38 +114,7 @@ var _UI = function() {
     };
 
     this.run = function() {
-        var string;
-        var execution = document.getElementById("execArea");
-        execution.value = "";
-        var d = new Date().getTime();
-        try {
-            with (Math) {
-                string = UI.exec(eval(document.getElementById("codeArea").value));
-            }
-        } catch (e) {
-            string = e.name + " at line " + (e.lineNumber - 56) + ": " + e.message;
-        }
-        var czas = document.getElementById("timing");
-        czas.innerHTML = "Czas: " + (new Date().getTime() - d) / 1000 + " s";
-        if (string !== undefined) {
-            execution.value += string;
-        }
-    };
-
-    this.exec = function(a) {
-        var str = "[";
-        if (typeof(a) === "object" && a.length) {
-            for (var i = 0; i < a.length; i++)
-                if (typeof(a[ i ]) === "object" && a[ i ].length) {
-                    str += (i === 0 ? "" : " ") + "[";
-                    for (var j = 0; j < a[ i ].length; j++)
-                        str += a[ i ][ j ] + (j === a[ i ].length - 1 ?
-                                "]" + (i === a.length - 1 ? "]" : ",") + "\n" : ", ");
-                } else
-                    str += a[ i ] + (i === a.length - 1 ? "]" : ", ");
-        } else
-            str = a;
-        return str;
+        new _Interpreter().interpreting();
     };
 
     this.getTimeNow = function() {

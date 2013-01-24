@@ -9,12 +9,12 @@
 // procedura preprocesowania, czyli przygotowania tablicy dla Interpretera algorytm preprocesowania
 
 /**
-* @param lexer
+* @param lexr
 */
 
-function preprocessing( lexer ){
+function preprocessing( lexr ){
 
-    this.lexer = lexer;
+    var lexer = lexr;
 
 
 }

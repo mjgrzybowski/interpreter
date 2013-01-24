@@ -9,16 +9,28 @@
 // Obiekt, ktory odpowiada za tlumaczenie wprowadzonego kodu na kod innego jezyka
 // Todo: zbudowac kompilator kodu
 
-/**
-* @param code
-* @param languageFrom
-* @param languageTo
-*/
 
-function _Translator( code, languageFrom, languageTo ) {
+var _Translator = function() {
 
-    this.code = code;
-    this.languageFrom = languageFrom;
-    this.languageTo = languageTo;
+    var codeAfterTranslation = [];
+    
+    this.getCodeAfterTranslation = function(){
+      return codeAfterTranslation;  
+    };
+    
+    //TODO: translate function need to be implemented
+    this.translate = function() {
+        var fromLanguage = UI.getCodeLanguage();
+        var toLanguage = UI.getExecLanguage();
+        var code = new _Lexer().getLinesFromCode();
+        
+        
+        
+        codeAfterTranslation = ["Need to be implemented"];
+        this.writeToExecArea(codeAfterTranslation);
+    };
 
-}
+    this.writeToExecArea = function(codeAfterTranslationValue) {
+        document.getElementById("execArea").value = codeAfterTranslationValue;
+    };
+};
