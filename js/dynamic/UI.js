@@ -9,21 +9,27 @@
 var _UI = function() {
 
     //code examples
-    var sampleCode1 = "SS: a,3\nSS: b,4\nSS: n,0\nSS: m,0\nSS: wynik,0\nSZ: b,m\n\nSZ: a,n\n\nZWJ: wynik\nZMJ: n\n\nIDL: n,9\n\nZMJ: m\n\nIDL:m,7\n\nEND:";
-    var sampleCode2 = "WW: witaj swiecie\nSS: a,3\nSS: b,4\nZWJ: a\nZMJ: b\nEND:";
-    var sampleCode3 = "SS: a,3\nSS: b,4\nZWJ: a\nZMJ: b\nEND:";
-    var sampleCode4 = "SS: a,3\nEND:";
-    var sampleCode5 = "var a = 1;\nvar b = 2;\nvar wynik;\nwynik = a + b;";
-    var codeAreaCODE = sampleCode5;
+    var sampleCode = [];
+    
+    sampleCode[0] = "SS: a,3\nSS: b,4\nZWJ: a\nZMJ: b\nEND:";
+    sampleCode[1] = "var a = 1;\nvar b = 2;\nvar wynik;\nwynik = a + b;";
+    sampleCode[2] = "int a = 1;\nint b = 2;\nint wynik;\nwynik = a + b;";
+    sampleCode[3] = "int a = 1;\nint b = 2;\nint wynik;\nwynik = a + b;";
+    
+    sampleCode[4] = "SS: a,3\nSS: b,4\nSS: n,0\nSS: m,0\nSS: wynik,0\nSZ: b,m\n\nSZ: a,n\n\nZWJ: wynik\nZMJ: n\n\nIDL: n,9\n\nZMJ: m\n\nIDL:m,7\n\nEND:";
+    sampleCode[5] = "WW: witaj swiecie\nSS: a,3\nSS: b,4\nZWJ: a\nZMJ: b\nEND:";
+    sampleCode[6] = "SS: a,3\nEND:";
+    var codeAreaCODE = "";
     var lastExecutedLine = 0;
     var codeLanguage = "pseudo";
     var executionLanguage = "javascript";
+    
     var lineNumbers = {0: 6, 1: "1"};
 
     this.getCodeLanguage = function() {
         return codeLanguage;
     };
-    
+
     this.getCodeAreaCODE = function() {
         return codeAreaCODE;
     };
@@ -184,14 +190,24 @@ var _UI = function() {
         return timeNow[ 0 ] + ":" + timeNow[ 1 ] + ":" + timeNow[ 2 ];
     };
 
-    this.loadCode = function() {
+    this.loadCode = function(i) {
+        codeAreaCODE = sampleCode[i];
         document.getElementById("codeArea").value = codeAreaCODE;
     };
 
     this.start = function() {
         this.drawLineNumbers();
-        this.chooseCodeLanguage("pseudo");
-        this.chooseExecutionLanguage("javascript");
+        for (var i = 0; i < 4; i++) {
+            if (Generator.getHTML().sub.optionChooseCodeAreaLanguage[i].selected === true) {
+                this.chooseCodeLanguage(Generator.getHTML().sub.optionChooseCodeAreaLanguage[i].textContent);
+                addListener(document, "DOMContentLoaded", UI.loadCode(i));
+            }
+        }
+        for (var i = 0; i < 4; i++) {
+            if (Generator.getHTML().sub.optionChooseExecutionAreaLanguage[i].selected === true) {
+                this.chooseExecutionLanguage(Generator.getHTML().sub.optionChooseExecutionAreaLanguage[i].textContent);
+            }
+        }
         $('#step').click(this.makeStep);
         $('#flush').click(this.flush);
         $('#translate').click(this.translate);
@@ -202,6 +218,5 @@ var _UI = function() {
 var UI = new _UI();
 UI.start();
 Parser.setLanguage(UI.getCodeLanguage());
-addListener(document, "DOMContentLoaded", UI.loadCode());
 addListener(document, "DOMContentLoaded", UI.cleanCode());
-alert("This is sample code, just put Yours into left textarea.");
+alert("This is sample code, just put Yours into left textarea and change language type.");

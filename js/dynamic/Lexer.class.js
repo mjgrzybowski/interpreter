@@ -8,7 +8,7 @@
 
 var _Lexer = function() {
 
-    var code = UI.getCodeAreaCODE();
+    //var code = UI.getCodeAreaCODE();
     var tokens;
     var lines;
 
@@ -72,23 +72,22 @@ var _Lexer = function() {
             string = this.removeSpaces(string);
         if (UI.getCodeLanguage() === "javascript")
             string = this.removeEnters(string);
+        if (UI.getCodeLanguage() === "cpp")
+            string = this.removeEnters(string);
+        if (UI.getCodeLanguage() === "java")
+            string = this.removeEnters(string);
 
         // String remove spaces
         var tempArray = string.split(separatorsTable[0]);
         var subArray = [];
         for (var i = 1; i < separatorsTable.length; i++) {
             for (var n in tempArray) {
-//                if (tempArray[n] !== "END:")
                     subArray = subArray.concat(tempArray[n].split(separatorsTable[i]));
-//                else {
-//                    subArray = subArray.concat("END");
-//                }
 //                console.log(subArray);
 //                console.log("========");
             }
             tempArray = this.cleanArray(subArray);
             subArray = [];
-            //}
         }
 
         return tempArray; // wynik analizy leksykalnej = tokeny
@@ -97,7 +96,7 @@ var _Lexer = function() {
     this.removeWhiteSpaces = function(s) {
         return s.replace(/\s+/g, '');
     };
-
+// source http://stackoverflow.com/questions/281264/remove-empty-elements-from-an-array-in-javascript
     this.cleanArray = function(actual) {
         var newArray = new Array();
         for (var i = 0; i < actual.length; i++) {

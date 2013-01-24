@@ -17,6 +17,22 @@ var _Preprocessor = function(lexer) {
     var codeLines = Lexer.getCodeLines();
     var codePreprocessed = [[[]]];
 
+    // new _Preprocessor().preprocessing()
+    this.preprocessing = function() {
+        if (UI.getCodeLanguage() === "pseudo") {
+            return this.preprocessingPseudo();
+        }
+        if (UI.getCodeLanguage() === "javascript") {
+            return this.preprocessingJS();
+        }
+        if (UI.getCodeLanguage() === "cpp") {
+            return this.preprocessingCpp();
+        }
+        if (UI.getCodeLanguage() === "java") {
+            return this.preprocessingJava();
+        }
+    };
+
     // new _Preprocessor().preprocessingPseudo()
     this.preprocessingPseudo = function() {
         for (var n = 0; n < codeLines.length; n++) {
@@ -53,14 +69,35 @@ var _Preprocessor = function(lexer) {
         }
         return codePreprocessed;
     };
-
+    // new _Preprocessor().preprocessingCpp()
     this.preprocessingCpp = function() {
+        for (var n = 0; n < codeLines.length; n++) {
+            if (Lexer.splitStringToArrayWithTree(codeLines[n], new _TreeDefinition().getTreeCpp())[0] !== "") {
+                if (Lexer.splitStringToArrayWithTree(codeLines[n], new _TreeDefinition().getTreeCpp())[0].substring(0, 3) === "int") {
+                    codePreprocessed[n] = [n, ["variable"], Lexer.splitStringToArrayWithTree(codeLines[n], new _TreeDefinition().getTreeCpp())];
+                } else
+                {
+                    codePreprocessed[n] = [n, [0], Lexer.splitStringToArrayWithTree(codeLines[n], new _TreeDefinition().getTreeCpp())];
+                }
+            }
+        }
+        return codePreprocessed;
+    };
+    // new _Preprocessor().preprocessingJava()
+    this.preprocessingJava = function() {
+        for (var n = 0; n < codeLines.length; n++) {
+            if (Lexer.splitStringToArrayWithTree(codeLines[n], new _TreeDefinition().getTreeJava())[0] !== "") {
+                if (Lexer.splitStringToArrayWithTree(codeLines[n], new _TreeDefinition().getTreeJava())[0].substring(0, 3) === "int") {
+                    codePreprocessed[n] = [n, ["variable"], Lexer.splitStringToArrayWithTree(codeLines[n], new _TreeDefinition().getTreeJava())];
+                } else
+                {
+                    codePreprocessed[n] = [n, [0], Lexer.splitStringToArrayWithTree(codeLines[n], new _TreeDefinition().getTreeJava())];
+                }
+            }
+        }
         return codePreprocessed;
     };
 
-    this.preprocessingJava = function() {
-        return codePreprocessed;
-    };
 
     this.getTreeForPreprocessor = function() {
         return this.treeForPreprocessor;

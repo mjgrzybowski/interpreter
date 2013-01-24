@@ -14,9 +14,9 @@
 var _TreeDefinition = function() {
 
     var treePseudo = ["\n",":",","]; 
-    var treeJS = [";"," = ","{","}"];
-    var treeCpp = ["\n",":",","];
-    var treeJava = ["\n",":",","];
+    var treeJS = [";"," = "];
+    var treeCpp = [";"," = "];
+    var treeJava = [";"," = "];
 
     this.getTreePseudo = function(){
         return treePseudo;
@@ -35,34 +35,3 @@ var _TreeDefinition = function() {
     };
 
 };
-
-
-
-//PseudoTreeDefinition = new _TreeDefinition( "pseudo" );
-//
-//
-//JavaScriptTreeDefinition = new _TreeDefinition( "javascript" );
-//
-//
-//CppTreeDefinition = new _TreeDefinition( "cpp" );
-//
-//
-//JavaTreeDefinition = new _TreeDefinition( "java" );
-
-/*
- if ( choice === "pseudo" )
- tree = pseudoTree;
- else if ( choice === "javascript" )
- tree = javaScriptTree;
- else if ( choice === "cpp" )
- tree = cppTree;
- else if ( choice === "java" )
- tree = javaTree;
- else
- console.log( "ERROR, language for tree unknown!" );
- */
-
-//var pseudoTree = {0: "\n", 1: ":", 2: ","};
-//var javaScriptTree = {0: ""};
-//var cppTree = {0: ""};
-//var javaTree = {0: ""};
