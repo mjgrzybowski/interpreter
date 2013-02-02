@@ -23,6 +23,7 @@ var _UI = function() {
     var lastExecutedLine = 0;
     var codeLanguage = "pseudo";
     var executionLanguage = "javascript";
+    var CanvasContainer = {};
     
     var lineNumbers = {0: 6, 1: "1"};
 
@@ -100,6 +101,7 @@ var _UI = function() {
             currentCode[ k ] = currentCode[ k ].trim();
         }
         document.getElementById('codeArea').value = currentCode.join('\n');
+        console.log("dziala clean");
     };
 
     this.chooseCodeLanguage = function(languageName) {
@@ -164,4 +166,4 @@ var UI = new _UI();
 UI.start();
 Parser.setLanguage(UI.getCodeLanguage());
 addListener(document, "DOMContentLoaded", UI.cleanCode());
-alert("This is sample code, just put Yours into left textarea and change language type.");
+//alert("This is sample code, just put Yours into left textarea and change language type.");

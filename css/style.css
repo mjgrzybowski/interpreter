@@ -34,7 +34,7 @@ html { font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 10
 
 html, button, input, select, textarea { font-family: sans-serif; color: #222; }
 
-body { margin: 0; font-size: 1em; line-height: 1.4; background-color: #daa520}
+body { margin: 0; font-size: 1em; line-height: 1.4; background-color: #A4A4A4}
 
 /*
  * Remove text-shadow in selection highlight: h5bp.com/i
@@ -253,7 +253,7 @@ div#code-container {
     height:500px;
     position:absolute;
     left:10px;
-    top:310px;
+    top:110px;
     background-color: #ddffdd;
 
 
@@ -290,8 +290,8 @@ div#memory-container {
     position:absolute;
 
     left:280px;
-    top:310px;
-    background-color: #ddffdd;
+    top:110px;
+    background-color: #c8e3c8;
 
 
 }
@@ -314,7 +314,7 @@ div#codeAreaLanguageChoice {
     position:absolute;
 
     left:10px;
-    top:280px;
+    top:80px;
 
 }
 
@@ -322,7 +322,7 @@ div#executionAreaLanguageChoice {
     position:absolute;
 
     left:280px;
-    top:280px;
+    top:80px;
 
 }
 
