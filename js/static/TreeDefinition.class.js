@@ -6,32 +6,22 @@
  * To change this template use File | Settings | File Templates.
  */
 
-// definicja drzewa to sposób postępowania Leksera, który przygotowuje kod 
-// zgodnie z danym językiem, zawiera konkretne algorytmy
+// definicja drzewa to sposób postępowania Leksera, który przygotowuje kod zgodnie z danym językiem
 
+/**
+* @param tokens
+* @param tokens
+*/
 
+function _TreeDefinition(tokens,treeRules){
 
-var _TreeDefinition = function() {
+        this.treeRules = treeRules;
 
-    var treePseudo = ["\n",":",","]; 
-    var treeJS = [";"," = "];
-    var treeCpp = [";"," = "];
-    var treeJava = [";"," = "];
+        this.tokens = tokens;
 
-    this.getTreePseudo = function(){
-        return treePseudo;
-    };
+        this.getTreeRules = function() { return this.treeRules; }; // pobieranie drzewa dla Preprocesora
+        this.setTreeRules = function( treeRules ) { this.treeRules = treeRules; }; // zmiana drzewa dla Preprocesora
 
-    this.getTreeJS = function(){
-        return treeJS;
-    };
-
-    this.getTreeCpp = function(){
-        return treeCpp;
-    };
-
-    this.getTreeJava = function(){
-        return treeJava;
-    };
-
-};
+        this.getTokens = function() { return this.tokens; }; // pobieranie drzewa dla Preprocesora
+        this.setTokens = function( change ) { this.tokens = tokens; }; // zmiana drzewa dla Preprocesora
+}

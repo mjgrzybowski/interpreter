@@ -9,34 +9,24 @@
 var _UI = function() {
 
     //code examples
-    var sampleCode = [];
-    
-    sampleCode[0] = "SS: a,3\nSS: b,4\nZWJ: a\nZMJ: b\nEND:";
-    sampleCode[1] = "var a = 1;\nvar b = 2;\nvar wynik;\nwynik = a + b;";
-    sampleCode[2] = "int a = 1;\nint b = 2;\nint wynik;\nwynik = a + b;";
-    sampleCode[3] = "int a = 1;\nint b = 2;\nint wynik;\nwynik = a + b;";
-    
-    sampleCode[4] = "SS: a,3\nSS: b,4\nSS: n,0\nSS: m,0\nSS: wynik,0\nSZ: b,m\n\nSZ: a,n\n\nZWJ: wynik\nZMJ: n\n\nIDL: n,9\n\nZMJ: m\n\nIDL:m,7\n\nEND:";
-    sampleCode[5] = "WW: witaj swiecie\nSS: a,3\nSS: b,4\nZWJ: a\nZMJ: b\nEND:";
-    sampleCode[6] = "SS: a,3\nEND:";
-    var codeAreaCODE = "";
+
     var lastExecutedLine = 0;
-    var codeLanguage = "pseudo";
-    var executionLanguage = "javascript";
     var CanvasContainer = {};
     
     var lineNumbers = {0: 6, 1: "1"};
 
+    this.Lexer = new _Lexer();
+
     this.getCodeLanguage = function() {
-        return codeLanguage;
+        return this.codeLanguage;
     };
     
     this.getExecLanguage = function() {
-        return executionLanguage;
+        return this.executionLanguage;
     };
 
     this.getCodeAreaCODE = function() {
-        return codeAreaCODE;
+        return new _Code(document.getElementById("codeArea").value,this.getCodeLanguage());
     };
 
     //this.setCodeLanguage = function( c ){ codeLanguage = c; };
@@ -104,19 +94,19 @@ var _UI = function() {
         console.log("dziala clean");
     };
 
-    this.chooseCodeLanguage = function(languageName) {
-        Parser.setLanguage(languageName);
-        codeLanguage = languageName;
-        console.log("Code language set up to: " + languageName);
+    this.chooseCodeLanguage = function(language) {
+        this.codeLanguage = language;
+        this.loadSampleCode();
+        console.log("Code language set up to: " + language.name);
     };
 
-    this.chooseExecutionLanguage = function(languageName) {
-        executionLanguage = languageName;
-        console.log("Execution code language set up to: " + languageName);
+    this.chooseExecutionLanguage = function(language) {
+        executionLanguage = language;
+        console.log("Execution code language set up to: " + language.name);
     };
 
     this.run = function() {
-        new _Interpreter().interpreting();
+        console.log(UI.Lexer.buildTree(UI.getCodeAreaCODE()));
     };
 
     this.getTimeNow = function() {
@@ -137,24 +127,14 @@ var _UI = function() {
         return timeNow[ 0 ] + ":" + timeNow[ 1 ] + ":" + timeNow[ 2 ];
     };
 
-    this.loadCode = function(i) {
-        codeAreaCODE = sampleCode[i];
-        document.getElementById("codeArea").value = codeAreaCODE;
+    this.loadSampleCode = function() {
+        document.getElementById("codeArea").value = this.codeLanguage.sampleCode;
+        alert("This is sample code, just put Yours into left textarea and change language type.");
     };
 
     this.start = function() {
         this.drawLineNumbers();
-        for (var i = 0; i < 4; i++) {
-            if (Generator.getHTML().sub.optionChooseCodeAreaLanguage[i].selected === true) {
-                this.chooseCodeLanguage(Generator.getHTML().sub.optionChooseCodeAreaLanguage[i].textContent);
-                addListener(document, "DOMContentLoaded", UI.loadCode(i));
-            }
-        }
-        for (var i = 0; i < 4; i++) {
-            if (Generator.getHTML().sub.optionChooseExecutionAreaLanguage[i].selected === true) {
-                this.chooseExecutionLanguage(Generator.getHTML().sub.optionChooseExecutionAreaLanguage[i].textContent);
-            }
-        }
+        addListener(document, "DOMContentLoaded", UI.loadSampleCode());
         $('#step').click(this.makeStep);
         $('#flush').click(this.flush);
         $('#translate').click(this.translate);
@@ -162,8 +142,16 @@ var _UI = function() {
     };
 };
 
+
+Generator.loadLanguages(aviableLanguages);
+
 var UI = new _UI();
+UI.codeLanguage = aviableLanguages[0];
+UI.executionLanguage = aviableLanguages[0];
+
 UI.start();
-Parser.setLanguage(UI.getCodeLanguage());
-addListener(document, "DOMContentLoaded", UI.cleanCode());
-//alert("This is sample code, just put Yours into left textarea and change language type.");
+UI.cleanCode();
+
+
+
+

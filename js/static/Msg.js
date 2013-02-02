@@ -41,7 +41,7 @@ var _Msg = function() {
 
     this.loadLocale = function( nr ){
         // title
-        document.getElementsByTagName("title")[0].innerHTML = Msg.appName[ nr ];
+        //document.getElementsByTagName("title")[0].innerHTML = Msg.appName[ nr ];
         // buttons
         document.getElementById("step").innerHTML = Msg.zrobKrok[ nr ];
         document.getElementById("flush").innerHTML = Msg.odNowa[ nr ];
@@ -52,4 +52,4 @@ var _Msg = function() {
 };
 
 var Msg = new _Msg();
-addListener(document, "DOMContentLoaded", Msg.onLoadLocale());
+//addListener(document, "DOMContentLoaded", Msg.onLoadLocale());
