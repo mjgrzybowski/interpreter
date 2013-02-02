@@ -21,20 +21,6 @@
  */
 
 var _Lexer = function (language) {
-    this.lexerLanguage = language; // jezyk dla Lexera
-    this.lexerTree = language.getTreeForLexer(); // drzewo, na podstawie ktorego Lexer zadziala, zaleznie od jezyka
-
-    this.setLexerTreeAndLanguage = function (tree, language) // zmiana drzewa i jezyka
-    {
-        this.lexerTree = tree;
-        this.lexerLanguage = language;
-    };
-    this.getLexerTree = function () {
-        return this.lexerTree;
-    };
-    this.getLexerLanguage = function () {
-        return this.lexerLanguage;
-    };
 
     this.buildTree = function (code) {
 
@@ -42,7 +28,8 @@ var _Lexer = function (language) {
         this.links = [[]];
         var cursor = 1;
         cursorBeforePrevBloc=0;
-        var deff = this.lexerTree.getTokens();
+
+        var deff = code.getLanguage().getTreeForLexer().getTreeRules();
 
         var tempArr2 = [],tempArr = [],cursorBeforePrevBloc,cursorBeforeThisBlock,dId,nnId;
 
@@ -68,15 +55,16 @@ var _Lexer = function (language) {
 
         }
 
-        var output;
+/*
+        var output=[];
 
         this.treeDefTravPre(
             this.preOrder(this.nodes[0]),function(n){
-                output.push[n[0],[2]];
+                output.push(n[0],[2]);
             }
         )
-
-        return output;
+*/
+        return this.preOrderObj(this.nodes[0]);
     };
 
     this.linkNewNode = function (newNode, treeNode) {
@@ -184,6 +172,23 @@ var _Lexer = function (language) {
             }
         }
         return [treeNode, toReturn];
+    };
+
+    this.preOrderObj = function (treeNode, parentNode) {
+        var nodeId, tempId, tempNode, toReturn = [], childNodes;
+        nodeId = this.nodes.indexOf(treeNode);
+
+        childNodes = this.links[nodeId];
+
+        for (tempId in childNodes) {
+            if ((tempNode = childNodes[tempId]) != parentNode) {
+                toReturn.push(this.preOrderObj(tempNode, treeNode));
+            }
+        }
+        var toR = {};
+        toR[treeNode[2]]=treeNode[0];
+        toR['of'] = toReturn
+        return toR;
     };
 
     this.treeDefTravPre = function (treeDef, f) {

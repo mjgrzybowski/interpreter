@@ -6,11 +6,20 @@
  * To change this template use File | Settings | File Templates.
  */
 
-//  Takes data from Preprocessor class object, returns exact procedure to VirtualMachine
+// Takes data from Preprocessor class object, returns exact procedure to VirtualMachine
 // Todo: zbudowac kompilator kodu
 
-function _Compiler() {
+/**
+ * @param interpreter
+ */
 
+var _Compiler = function( interpreter ) {
 
+   // this.compilation = new _Preprocessor().preprocess();
+    this.codeFinal = [];
+    
+    this.compile = function(){
+        //return codeFinal;
+    };
 
-}
+};

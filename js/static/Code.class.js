@@ -8,12 +8,12 @@
 
 // obiekt tej klasy zwiera treść (kod) wpisany przez użytkownika na stronie aplikacji
 // kod jest okreslany przez jego jezyk
-var _Code = function() { // klasa kodu
-    this.codeLanguage = null; // jezyk kodu
-    this.content = null; // tresc kodu jako string
+var _Code = function(content,language) { // klasa kodu
+    this.language = language; // jezyk kodu
+    this.content = content; // tresc kodu jako string
 
-    this.getCodeLanguage = function() { return this.codeLanguage; }; // pobieranie jezyka kodu
-    this.setCodeLanguage = function( change ){this.codeLanguage = change; }; // zmiana jezyka kodu
+    this.getLanguage = function() { return this.language; }; // pobieranie jezyka kodu
+    this.setLanguage = function( change ){this.language = change; }; // zmiana jezyka kodu
     this.getContent = function() { return this.content ; } ; // pobieranie kodu
     this.setContent = function( change ) { this.content = change.toString(); }; // zmiana kodu
 };

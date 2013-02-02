@@ -7,18 +7,18 @@
  */
 
 // obiekt walidatora kodu
-var _AreaValidator = function(){
-    this.language = null; // jezyk do walidacji
+var _Parser = function(){
+    var language = null; // jezyk do walidacji
 
     //this.getLanguage = function() { return this.language; }; // pobieranie jezyka
-    this.setLanguage = function( change ) { this.language = change; }; // ustawianie jezyka
+    this.setLanguage = function( change ) { language = change; }; // ustawianie jezyka
 
     // Funkcja uruchamia sie automatycznie, gdy zmieni sie kod w nameArea
     // funkcja, która na bierzaco sprawdza, czy kod wpisywany jest poprawnie
     this.areaValidate = function( nameArea ) {
         UI.cleanCode();
-        this.myNewCode = document.getElementById( nameArea ).value;
-        console.log( this.parseNewCode( this.myNewCode, this.language ) );
+        var myNewCode = document.getElementById( nameArea ).value;
+        console.log( this.parseNewCode( myNewCode, language ) );
 
         //console.log("ok");
     };
@@ -94,6 +94,6 @@ var _AreaValidator = function(){
 
 };
 
-var CodeAreaValidator = new _AreaValidator();
-//var ExecutionAreaValidator = new _AreaValidator();
+var Parser = new _Parser();
+//var ExecutionAreaValidator = new _Parser();
 
