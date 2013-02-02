@@ -11,6 +11,7 @@ var _UI = function() {
     //code examples
 
     var lastExecutedLine = 0;
+    var CanvasContainer = {};
     
     var lineNumbers = {0: 6, 1: "1"};
 
@@ -90,6 +91,7 @@ var _UI = function() {
             currentCode[ k ] = currentCode[ k ].trim();
         }
         document.getElementById('codeArea').value = currentCode.join('\n');
+        console.log("dziala clean");
     };
 
     this.chooseCodeLanguage = function(language) {

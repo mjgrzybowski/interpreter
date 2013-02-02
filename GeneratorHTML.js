@@ -20,14 +20,6 @@ var _Generator = function() {
     };
 
     // <script src="" type="text/javascript"></script>
-    this.createBodyScriptElement = function(src) {
-        var script = document.createElement('script');
-        script.src = src;
-        script.type = "text/javascript";
-        return script;
-    };
-
-    // <script src="" type="text/javascript"></script>
     this.createHeadScriptElement = function(src) {
         var script = document.createElement('script');
         script.src = src;
@@ -35,26 +27,50 @@ var _Generator = function() {
         return script;
     };
 
+    // <script src="" type="text/javascript"></script>
+    this.createBodyScriptElement = function(src) {
+        var script = document.createElement('script');
+        script.src = src;
+        script.type = "text/javascript";
+        return script;
+    };
+
+    // <p id="" style=""></p>
+    this.createBodyPElement = function(pID, pContent) {
+        var p = document.createElement('p');
+        p.id = pID;
+        p.textContent = pContent;
+        return p;
+    };
+
+    // <canvas id="" width="" height=""></canvas>
+    this.createBodyCanvasElement = function(canvasID, canvasWidth, canvasHeight) {
+        var canvasElement = document.createElement('canvas');
+        canvasElement.id = canvasID;
+        canvasElement.width = canvasWidth;
+        canvasElement.height = canvasHeight;
+        return canvasElement;
+    };
+
     // <header></header>
     this.createBodyHeaderElement = function() {
-        var header = document.createElement('header');
-        return header;
+        return document.createElement('header');
     };
 
     // <table><tbody><tr><td></td></tr></tbody></table>
     // insert into cell:    cell.innerHTML="...";
     // removing cell: row.deleteCell(0);
     this.createBodyTableElement = function(rows, cols) {
-        var table = document.createElement('table');
+        var tableElement = document.createElement('table');
         for (var i = 0; i < rows; i++)
         {
-            table.insertRow(i);
+            tableElement.insertRow(i);
             for (var j = 0; j < cols; j++)
             {
-                table.rows[i].insertCell(j);
+                tableElement.rows[i].insertCell(j);
             }
         }
-        return table;
+        return tableElement;
     };
 
     /*    this.getCellHandle = function(tableObject, row, col){
@@ -209,8 +225,16 @@ var _Generator = function() {
 //BODY
         Generator.getHTML().bodyElem.promptComment = Generator.createHTMLComment("\Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.\nchromium.org/developers/how-tos/chrome-frame-getting-started");
         Generator.getHTML().bodyElem.chromeframeComment = Generator.createHTMLComment("\[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href=\"http://browsehappy.com/\">Upgrade to a different browser</a> or <a href=\"http://www.google.com/chromeframe/?redirect=true\">install Google Chrome Frame</a> to experience this site.</p><![endif]");
+// canvasDesign
+        Generator.getHTML().sub.canvasDesignElem = {};
+        Generator.getHTML().sub.canvasDesignElem.pOldBrowserMessage = Generator.createBodyPElement("oldBrowserMessage", "\Sorry,<br/> but your web browser is not enough for this application.<br/>Please update it to its latest version or change it and start over.");
+        Generator.getHTML().sub.canvasDesignElem.pOldBrowserMessage.setAttribute("style", "color: red;");
+        Generator.getHTML().sub.canvasDesignElem.divIncompatibleBrowser = Generator.createBodyDivElement("incompatibleBrowser", "", "");
+        Generator.getHTML().bodyElem.canvasDesign = Generator.createBodyCanvasElement("canvasDesign", 900, 600);
+        //Generator.getHTML().bodyElem.canvasTree = Generator.createBodyCanvasElement("canvasTree", 400, 400);
 
-        Generator.getHTML().bodyElem.header = Generator.createBodyHeaderElement();
+//header
+        /*Generator.getHTML().bodyElem.header = Generator.createBodyHeaderElement();
         Generator.getHTML().sub.tableInHeader = Generator.createBodyTableElement(1, 2);
         Generator.getHTML().sub.imageLogo = Generator.createBodyImageElement("img/logo_FETE_en.png", "padding: 10px;", "Application logo");
         Generator.getHTML().sub.tableInHeader.rows[0].childNodes[0].appendChild(Generator.getHTML().sub.imageLogo);
@@ -220,9 +244,9 @@ var _Generator = function() {
         Generator.getHTML().sub.flagsImages[2] = Generator.createBodyImageElement("img/ger_flag.gif", "padding: 10px;", "German flag");
         Generator.getHTML().sub.flagsImages[3] = Generator.createBodyImageElement("img/esp_flag.gif", "padding: 10px;", "Spanish flag");
         Generator.getHTML().sub.flagsImages[4] = Generator.createBodyImageElement("img/fr_flag.gif", "padding: 10px;", "French flag");
-        Generator.getHTML().sub.flagsImages[5] = Generator.createBodyImageElement("img/rus_flag.gif", "padding: 10px;", "Russian flag");
+        Generator.getHTML().sub.flagsImages[5] = Generator.createBodyImageElement("img/rus_flag.gif", "padding: 10px;", "Russian flag");*/
 
-
+        /*
         Generator.getHTML().sub.linkLocale = [];
         for (var m = 0; m < 6; m++) {
             Generator.getHTML().sub.linkLocale[m] = Generator.createBodyLinkElement("#");
@@ -232,7 +256,7 @@ var _Generator = function() {
             Generator.getHTML().sub.tableInHeader.rows[0].childNodes[1].appendChild(Generator.getHTML().sub.linkLocale[m]);
             Generator.getHTML().sub.tableInHeader.rows[0].childNodes[1].appendChild(document.createElement('br'));
         }
-
+        */
 // body divs and divButtons
 
         Generator.getHTML().bodyElem.divBtnStep = Generator.createBodyDivElement("step", "btn", "Zrób krok");
@@ -281,9 +305,9 @@ var _Generator = function() {
         Generator.getHTML().bodyElem.scriptPlugins = Generator.createBodyScriptElement("js/plugins.js");
         Generator.getHTML().bodyElem.scriptMsg = Generator.createBodyScriptElement("js/static/Msg.js");
         Generator.getHTML().bodyElem.scriptCodeClass = Generator.createBodyScriptElement("js/static/Code.class.js");
-        Generator.getHTML().bodyElem.scriptLanguageClass = Generator.createBodyScriptElement("js/static/Language.class.js");
         Generator.getHTML().bodyElem.scriptOperatorClass = Generator.createBodyScriptElement("js/static/Operator.class.js");
         Generator.getHTML().bodyElem.scriptTreeDefinitionClass = Generator.createBodyScriptElement("js/static/TreeDefinition.class.js");
+        Generator.getHTML().bodyElem.scriptLanguageClass = Generator.createBodyScriptElement("js/static/Language.class.js");
 
         Generator.getHTML().bodyElem.scriptParser = Generator.createBodyScriptElement("js/dynamic/Parser.class.js");
         Generator.getHTML().bodyElem.scriptLexerClass = Generator.createBodyScriptElement("js/dynamic/Lexer.class.js");
@@ -294,6 +318,8 @@ var _Generator = function() {
         Generator.getHTML().bodyElem.scriptPreprocessorClass = Generator.createBodyScriptElement("js/dynamic/Preprocessor.class.js");
         Generator.getHTML().bodyElem.scriptTranslatorClass = Generator.createBodyScriptElement("js/dynamic/Translator.class.js");
         Generator.getHTML().bodyElem.scriptVirtualMachine = Generator.createBodyScriptElement("js/dynamic/VirtualMachine.js");
+        Generator.getHTML().bodyElem.scriptCanvasClass = Generator.createBodyScriptElement("js/dynamic/Canvas.class.js");
+        
 
         Generator.appendToHTML();
 
@@ -303,6 +329,8 @@ var _Generator = function() {
 
         languagesList.map(function(l,i){Generator.getHTML().sub.optionChooseCodeAreaLanguage[i] = Generator.createBodyOptionElement(i, l.name);});
 
+        Generator.getHTML().sub.canvasDesignElem.divIncompatibleBrowser.appendChild(Generator.getHTML().sub.canvasDesignElem.pOldBrowserMessage);
+        Generator.getHTML().bodyElem.canvasDesign.appendChild(Generator.getHTML().sub.canvasDesignElem.divIncompatibleBrowser);
         Generator.getHTML().bodyElem.divCodeAreaLanguageChoice.appendChild(Generator.getHTML().sub.labelForCodeAreaLanguageChoice);
         for (var i = 0; i < 4; i++) {
             Generator.getHTML().sub.selectChooseCodeAreaLanguage.appendChild(Generator.getHTML().sub.optionChooseCodeAreaLanguage[i]);
@@ -320,7 +348,7 @@ var _Generator = function() {
         Generator.getHTML().bodyElem.divExecutionAreaLanguageChoice.appendChild(Generator.getHTML().sub.selectChooseExecutionAreaLanguage);
         Generator.getHTML().sub.selectChooseExecutionAreaLanguage.setAttribute("onchange", "UI.chooseExecutionLanguage(aviableLanguages[selectedIndex]);");
 
-    }
+    };
 
     this.appendToHTML = function() {
 
@@ -331,7 +359,7 @@ var _Generator = function() {
             }
         }
 
-        Generator.getHTML().bodyElem.header.appendChild(Generator.getHTML().sub.tableInHeader);
+        //Generator.getHTML().bodyElem.header.appendChild(Generator.getHTML().sub.tableInHeader);
 
 
         Generator.getHTML().bodyElem.divCodeContainer.appendChild(Generator.getHTML().sub.labelForCodeContainer);
